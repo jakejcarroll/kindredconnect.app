@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kindred — A weekly check-in for couples</title>
+  <meta name="description" content="A weekly couples check-in where you answer the same questions privately, reveal answers together, and make commitments for the week ahead.">
+  <meta property="og:title" content="Kindred — A weekly check-in for couples">
+  <meta property="og:description" content="Turn intention into action, together. A weekly couples ritual with follow-through built in.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kindredconnect.app">
+  <!-- og:image — replace with actual hosted image before launch -->
+  <!-- <meta property="og:image" content="https://kindredconnect.app/og-image.png"> -->
+  <!-- <meta property="og:image:width" content="1200"> -->
+  <!-- <meta property="og:image:height" content="630"> -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C06E5D'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-serif: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+      --font-sans: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+      --terracotta-50: #FDF5F2;
+      --terracotta-100: #F5E0D8;
+      --terracotta-200: #EBC4B6;
+      --terracotta-300: #D9A494;
+      --terracotta-500: #C06E5D;
+      --terracotta-600: #A8574A;
+      --terracotta-700: #8D4438;
+
+      --peach-100: #FAF0E3;
+      --peach-200: #F2DFCA;
+      --peach-300: #DBC4A9;
+
+      --sage-500: #7D8E6A;
+      --dusty-blue-500: #7389A0;
+      --ochre-400: #C9A655;
+
+      --color-background: #F7F2EE;
+      --color-surface: #FFFFFF;
+      --color-surface-elevated: #FEFAF6;
+      --color-surface-section: #EDE8E2;
+
+      --color-text: #3D2F25;
+      --color-text-secondary: #7B6C60;
+      --color-text-tertiary: #968A7C;
+      --color-text-inverse: #FFFFFF;
+
+      --color-border: #E1DBD4;
+      --color-border-subtle: rgba(225, 219, 212, 0.6);
+
+      --shadow-card: 0px 2px 8px rgba(61,47,37,0.05), 0px 1px 3px rgba(61,47,37,0.03);
+      --shadow-card-hover: 0px 8px 24px rgba(61,47,37,0.08), 0px 2px 8px rgba(61,47,37,0.04);
+      --shadow-button: 0 2px 8px rgba(173,96,85,0.18);
+      --shadow-button-hover: 0 6px 16px rgba(173,96,85,0.28);
+
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --duration-fast: 150ms;
+      --duration-normal: 300ms;
+      --duration-slow: 400ms;
+      --duration-entrance: 600ms;
+      --duration-hero: 900ms;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-background: #1E1814;
+        --color-surface: #2C2420;
+        --color-surface-elevated: #3A302B;
+        --color-surface-section: #2E2622;
+        --color-text: #F5E0D8;
+        --color-text-secondary: #968A7C;
+        --color-text-tertiary: #7B6C60;
+        --color-text-inverse: #1E1814;
+        --color-border: #3D342E;
+        --color-border-subtle: rgba(61,52,46,0.6);
+        --terracotta-50: #2E2622;
+        --terracotta-500: #CC8976;
+        --terracotta-600: #B5705E;
+        --terracotta-300: #8D4438;
+        --shadow-card: 0px 2px 8px rgba(0,0,0,0.2), 0px 1px 3px rgba(0,0,0,0.12);
+        --shadow-card-hover: 0px 8px 24px rgba(0,0,0,0.3), 0px 2px 8px rgba(0,0,0,0.15);
+        --shadow-button: 0 2px 8px rgba(204,137,118,0.15);
+        --shadow-button-hover: 0 6px 16px rgba(204,137,118,0.25);
+      }
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--color-text);
+      background-color: var(--color-background);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+    ::selection { background: rgba(192,110,93,0.2); color: var(--color-text); }
+    @media (prefers-color-scheme: dark) {
+      ::selection { background: rgba(204,137,118,0.25); }
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Noise overlay ── */
+    body::before {
+      content: ''; position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat; background-size: 256px 256px;
+    }
+    @media (prefers-color-scheme: dark) { body::before { opacity: 0.04; } }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    @media (min-width: 768px) {
+      .container { padding: 0 32px; }
+    }
+
+    /* ── Bands ── */
+    .band-tinted { background: var(--color-surface-section); }
+
+    /* ── Section spacing ── */
+    .section-pad {
+      padding: 88px 0;
+    }
+    @media (min-width: 768px) {
+      .section-pad { padding: 112px 0; }
+    }
+
+    /* ════════════════════════════════════════════
+       TYPOGRAPHY
+       ════════════════════════════════════════════ */
+    .t-display {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: clamp(36px, 6.5vw, 60px);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+    }
+
+    .t-title {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: clamp(26px, 3.5vw, 36px);
+      line-height: 1.18;
+      letter-spacing: -0.01em;
+    }
+
+    .t-subtitle {
+      font-family: var(--font-serif);
+      font-size: 21px;
+      font-weight: 400;
+      line-height: 1.35;
+    }
+
+    .t-body {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.65;
+      text-wrap: pretty;
+    }
+
+    .t-body-lg {
+      font-family: var(--font-sans);
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.7;
+      text-wrap: pretty;
+    }
+
+    .t-body-medium {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.65;
+    }
+
+    .t-overline {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+    }
+
+    .text-secondary { color: var(--color-text-secondary); }
+    .text-tertiary { color: var(--color-text-tertiary); }
+
+    /* ════════════════════════════════════════════
+       HEADER
+       ════════════════════════════════════════════ */
+    .site-header {
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--color-background);
+      transition: box-shadow var(--duration-normal) var(--ease-out);
+    }
+    .site-header.scrolled { box-shadow: 0 1px 0 var(--color-border); }
+    .header-inner { display: flex; align-items: center; gap: 10px; }
+    .logo-mark {
+      width: 34px; height: 34px; border-radius: 9999px;
+      background: rgba(192,110,93,0.08); display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0; position: relative;
+    }
+    @media (prefers-color-scheme: dark) { .logo-mark { background: rgba(204,137,118,0.1); } }
+    .logo-mark svg { width: 15px; height: 15px; fill: var(--terracotta-500); }
+    .logo-mark::after {
+      content: ''; position: absolute; inset: 0; border-radius: 9999px;
+      background: rgba(192,110,93,0.08);
+      animation: heartPulse 3s var(--ease-out) 1s 1 both;
+    }
+    @keyframes heartPulse {
+      0% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.6); opacity: 0; }
+      100% { transform: scale(1.6); opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) { .logo-mark::after { animation: none; opacity: 0; } }
+    .logo-text { font-family: var(--font-serif); font-size: 20px; font-weight: 400; }
+
+    /* ════════════════════════════════════════════
+       HERO
+       ════════════════════════════════════════════ */
+    .hero {
+      padding: 80px 0 72px;
+      position: relative;
+      overflow: hidden;
+    }
+    @media (min-width: 768px) {
+      .hero { padding: 120px 0 104px; }
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -120px; right: -200px;
+      width: 600px; height: 600px; border-radius: 9999px;
+      background: radial-gradient(circle, rgba(192,110,93,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    @media (prefers-color-scheme: dark) {
+      .hero::before { background: radial-gradient(circle, rgba(204,137,118,0.06) 0%, transparent 70%); }
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-headline {
+      max-width: 520px;
+      margin-bottom: 28px;
+    }
+    .hero-sub {
+      color: var(--color-text-secondary);
+      max-width: 500px;
+      margin-bottom: 40px;
+    }
+    .hero-cta-row {
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    }
+
+    /* ════════════════════════════════════════════
+       BUTTONS
+       ════════════════════════════════════════════ */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: var(--font-sans); font-weight: 500; border: none;
+      cursor: pointer; transition: all var(--duration-normal) var(--ease-out);
+      text-decoration: none; white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--terracotta-500); color: var(--color-text-inverse);
+      padding: 15px 36px; border-radius: 16px;
+      font-size: 15px; letter-spacing: 0.3px; box-shadow: var(--shadow-button);
+    }
+    .btn-primary:hover {
+      background: var(--terracotta-600); transform: translateY(-2px);
+      box-shadow: var(--shadow-button-hover);
+    }
+    .btn-primary:active { transform: translateY(0) scale(0.98); }
+
+    /* Coming soon — informational label, not interactive */
+    .coming-soon-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      letter-spacing: 0.2px;
+    }
+    .coming-soon-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 9999px;
+      background: var(--terracotta-500);
+      opacity: 0.5;
+    }
+
+    /* ════════════════════════════════════════════
+       SECTION HEADERS
+       ════════════════════════════════════════════ */
+    .section-header {
+      margin-bottom: 48px;
+    }
+    @media (min-width: 768px) {
+      .section-header { margin-bottom: 56px; }
+    }
+    .section-overline {
+      color: var(--terracotta-500);
+      margin-bottom: 10px;
+    }
+    .section-headline {
+      max-width: 500px;
+    }
+
+    /* ════════════════════════════════════════════
+       DECORATIVE HR
+       ════════════════════════════════════════════ */
+    .hr-deco {
+      border: none; height: 1px;
+      background: linear-gradient(to right, transparent, var(--color-border) 20%, var(--color-border) 80%, transparent);
+      margin: 0;
+    }
+
+    /* ════════════════════════════════════════════
+       STEPS — timeline
+       ════════════════════════════════════════════ */
+    .steps-container { position: relative; }
+    .steps-container::before {
+      content: ''; position: absolute; left: 19px; top: 40px; bottom: 40px; width: 1px;
+      background: linear-gradient(to bottom, var(--color-border), var(--terracotta-300), var(--color-border));
+    }
+    @media (min-width: 640px) { .steps-container::before { left: 31px; } }
+
+    .step {
+      display: grid; grid-template-columns: 40px 1fr; gap: 20px;
+      align-items: start; padding-bottom: 32px; position: relative;
+    }
+    .step:last-child { padding-bottom: 0; }
+    @media (min-width: 640px) {
+      .step { grid-template-columns: 64px 1fr; padding-bottom: 48px; gap: 28px; }
+    }
+    .step-marker {
+      width: 40px; height: 40px; border-radius: 9999px;
+      background: var(--color-background); border: 1.5px solid var(--color-border);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-serif); font-size: 16px; color: var(--terracotta-500);
+      flex-shrink: 0; position: relative; z-index: 2;
+      transition: border-color var(--duration-normal) var(--ease-out),
+                  background var(--duration-normal) var(--ease-out);
+    }
+    @media (min-width: 640px) { .step-marker { width: 64px; height: 64px; font-size: 22px; } }
+    .step:hover .step-marker { border-color: var(--terracotta-300); background: var(--terracotta-50); }
+    .step-content { padding-top: 4px; }
+    @media (min-width: 640px) { .step-content { padding-top: 14px; } }
+    .step-title { margin-bottom: 6px; }
+    .step-body { color: var(--color-text-secondary); max-width: 460px; }
+
+    /* ════════════════════════════════════════════
+       VALUE PROPS
+       ════════════════════════════════════════════ */
+
+    /* Lead prop */
+    .prop-lead {
+      background: var(--color-surface); border: 1px solid var(--color-border);
+      border-radius: 20px; padding: 36px 28px;
+      box-shadow: var(--shadow-card); margin-bottom: 20px;
+      transition: box-shadow var(--duration-slow) var(--ease-out),
+                  transform var(--duration-slow) var(--ease-out),
+                  border-color var(--duration-slow) var(--ease-out);
+    }
+    @media (min-width: 640px) { .prop-lead { padding: 48px 40px; } }
+    .prop-lead:hover {
+      box-shadow: var(--shadow-card-hover); transform: translateY(-2px);
+      border-color: var(--color-border-subtle);
+    }
+    .prop-lead .prop-overline { margin-bottom: 12px; }
+    .prop-lead .prop-title {
+      font-family: var(--font-serif);
+      font-size: clamp(23px, 3vw, 28px);
+      line-height: 1.22;
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+      font-weight: 400;
+    }
+    .prop-lead .prop-body { max-width: 520px; }
+
+    /* Pull-quote */
+    .prop-pullquote {
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--color-border);
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 21px;
+      line-height: 1.4;
+      color: var(--terracotta-500);
+      letter-spacing: -0.005em;
+    }
+
+    /* Grid props — with category accent top-borders */
+    .props-grid { display: grid; gap: 16px; }
+    @media (min-width: 640px) { .props-grid { grid-template-columns: 1fr 1fr; gap: 20px; } }
+
+    .prop-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      padding: 28px 24px;
+      box-shadow: var(--shadow-card);
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow var(--duration-slow) var(--ease-out),
+                  transform var(--duration-slow) var(--ease-out),
+                  border-color var(--duration-slow) var(--ease-out);
+    }
+    .prop-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      border-radius: 16px 16px 0 0;
+    }
+    .prop-card--terracotta::before { background: var(--terracotta-500); opacity: 0.5; }
+    .prop-card--sage::before { background: var(--sage-500); opacity: 0.6; }
+    .prop-card--dusty-blue::before { background: var(--dusty-blue-500); opacity: 0.6; }
+    .prop-card--ochre::before { background: var(--ochre-400); opacity: 0.5; }
+
+    .prop-card:hover {
+      box-shadow: var(--shadow-card-hover); transform: translateY(-2px);
+      border-color: var(--color-border-subtle);
+    }
+    .prop-overline { color: var(--terracotta-500); margin-bottom: 8px; }
+    .prop-title {
+      font-family: var(--font-serif); font-size: 20px; font-weight: 400;
+      line-height: 1.3; margin-bottom: 10px;
+    }
+    .prop-body { color: var(--color-text-secondary); }
+    @media (prefers-reduced-motion: reduce) {
+      .prop-lead:hover, .prop-card:hover { transform: none; }
+    }
+
+    /* ════════════════════════════════════════════
+       ANTI-POSITIONING
+       ════════════════════════════════════════════ */
+    .anti-grid { margin-top: 48px; }
+    @media (min-width: 768px) { .anti-grid { margin-top: 56px; } }
+
+    .anti-item {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--color-border);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+    .anti-item:first-child { padding-top: 0; }
+    .anti-item:last-child { border-bottom: none; padding-bottom: 0; }
+    @media (min-width: 640px) {
+      .anti-item {
+        grid-template-columns: 1fr 1.5fr;
+        gap: 32px;
+        align-items: baseline;
+        padding: 24px 0;
+      }
+    }
+    .anti-title { color: var(--color-text); }
+    .anti-body { color: var(--color-text-secondary); }
+
+    /* ════════════════════════════════════════════
+       AUDIENCE
+       ════════════════════════════════════════════ */
+    .audience-content { max-width: 540px; }
+    .audience-content p {
+      color: var(--color-text-secondary);
+      font-size: 17px;
+      line-height: 1.75;
+      text-wrap: pretty;
+    }
+    .audience-content p + p { margin-top: 24px; }
+    .audience-emphasis { color: var(--color-text); font-weight: 500; }
+    .audience-note {
+      margin-top: 40px;
+      padding: 24px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      font-size: 14px;
+      color: var(--color-text-tertiary);
+      line-height: 1.65;
+      max-width: 540px;
+    }
+
+    /* ════════════════════════════════════════════
+       CLOSING CTA
+       ════════════════════════════════════════════ */
+    .closing {
+      text-align: center;
+      padding: 96px 0 80px;
+    }
+    @media (min-width: 768px) {
+      .closing { padding: 120px 0 96px; }
+    }
+    .closing-heart {
+      width: 44px; height: 44px;
+      margin: 0 auto 32px;
+      opacity: 0.1;
+    }
+    .closing-heart svg { width: 100%; height: 100%; fill: var(--terracotta-500); }
+    .closing-headline { margin-bottom: 14px; }
+    .closing-sub {
+      color: var(--color-text-secondary);
+      max-width: 420px;
+      margin: 0 auto 36px;
+      font-size: 16px;
+      line-height: 1.65;
+      text-wrap: pretty;
+    }
+
+    /* ════════════════════════════════════════════
+       FOOTER
+       ════════════════════════════════════════════ */
+    .site-footer {
+      padding: 28px 0;
+      border-top: 1px solid var(--color-border);
+    }
+    .footer-inner {
+      display: flex; justify-content: center; align-items: center;
+    }
+    .footer-text { color: var(--color-text-tertiary); font-size: 13px; }
+
+    /* ════════════════════════════════════════════
+       ENTRANCE ANIMATIONS
+       Content is visible by default. JS adds .has-animations
+       to <html> to enable scroll-triggered reveals.
+       ════════════════════════════════════════════ */
+    .has-animations .reveal {
+      opacity: 0; transform: translateY(16px);
+      transition: opacity var(--duration-entrance) var(--ease-out-expo),
+                  transform var(--duration-entrance) var(--ease-out-expo);
+    }
+    .has-animations .reveal.visible { opacity: 1; transform: translateY(0); }
+    .has-animations .reveal-hero {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity var(--duration-hero) var(--ease-out-expo),
+                  transform var(--duration-hero) var(--ease-out-expo);
+    }
+    .has-animations .reveal-hero.visible { opacity: 1; transform: translateY(0); }
+    .d-0 { transition-delay: 0ms; }
+    .d-1 { transition-delay: 120ms; }
+    .d-2 { transition-delay: 240ms; }
+    .d-3 { transition-delay: 340ms; }
+    .d-4 { transition-delay: 440ms; }
+    .d-5 { transition-delay: 540ms; }
+    .d-6 { transition-delay: 640ms; }
+    .d-7 { transition-delay: 740ms; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal-hero { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header" id="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <div class="logo-mark">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </div>
+        <span class="logo-text">Kindred</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="t-display hero-headline reveal-hero d-0">Turn intention into action, together</h1>
+          <p class="t-body-lg hero-sub reveal-hero d-1">Kindred is a weekly couples check-in. You answer the same questions privately, reveal answers together, and make commitments for the week ahead. Then Kindred brings those commitments back — so the things you mean to do actually happen.</p>
+          <div class="hero-cta-row reveal-hero d-2">
+            <span class="coming-soon-label"><span class="coming-soon-dot"></span> Coming to iOS soon</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="section-header">
+          <p class="t-overline section-overline reveal d-0">HOW IT WORKS</p>
+          <h2 class="t-title section-headline reveal d-1">Once a week, together</h2>
+        </div>
+        <div class="steps-container">
+          <div class="step reveal d-1">
+            <div class="step-marker">1</div>
+            <div class="step-content">
+              <h3 class="t-subtitle step-title">Start together</h3>
+              <p class="t-body step-body">You both hold a button to begin. Same room, same moment. It takes about 15–20 minutes.</p>
+            </div>
+          </div>
+          <div class="step reveal d-2">
+            <div class="step-marker">2</div>
+            <div class="step-content">
+              <h3 class="t-subtitle step-title">Answer privately</h3>
+              <p class="t-body step-body">You each answer the same questions on your own screen. Your partner can't see what you're writing until you're both done.</p>
+            </div>
+          </div>
+          <div class="step reveal d-3">
+            <div class="step-marker">3</div>
+            <div class="step-content">
+              <h3 class="t-subtitle step-title">Reveal at the same time</h3>
+              <p class="t-body step-body">Answers appear simultaneously. No editing after the fact. You see what each of you actually thought — not what you thought the other wanted to hear.</p>
+            </div>
+          </div>
+          <div class="step reveal d-4">
+            <div class="step-marker">4</div>
+            <div class="step-content">
+              <h3 class="t-subtitle step-title">Make commitments</h3>
+              <p class="t-body step-body">After the reveal, you decide together: what to do this week, what to keep doing, and what to let go of. Kindred brings those commitments back next week.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="hr-deco">
+
+    <!-- Value props -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="section-header">
+          <p class="t-overline section-overline reveal d-0">WHAT MAKES THIS DIFFERENT</p>
+          <h2 class="t-title section-headline reveal d-1">A check-in that follows through</h2>
+        </div>
+        <div class="prop-lead reveal d-2">
+          <p class="t-overline prop-overline">INSIGHT TO ACTION</p>
+          <h3 class="prop-title">The conversation doesn't end when the app closes</h3>
+          <p class="t-body prop-body">Every couples app helps you learn something about each other. None of them help you do something about it. After each check-in, you make commitments together — tasks to complete, habits to sustain — and Kindred brings them back the following week.</p>
+          <p class="prop-pullquote">Think about what comes next together.</p>
+        </div>
+        <div class="props-grid">
+          <div class="prop-card prop-card--terracotta reveal d-3">
+            <p class="t-overline prop-overline">HONEST BY DESIGN</p>
+            <h3 class="prop-title">Structurally honest</h3>
+            <p class="t-body prop-body">You both answer privately. Answers appear at the same time. No peeking, no editing after. The structure creates conditions for honesty.</p>
+          </div>
+          <div class="prop-card prop-card--dusty-blue reveal d-4">
+            <p class="t-overline prop-overline">SYNCHRONOUS</p>
+            <h3 class="prop-title">Both of you, at the same time</h3>
+            <p class="t-body prop-body">Kindred requires both of you — same room, same moment. You start together, answer together, and decide what to do next together.</p>
+          </div>
+          <div class="prop-card prop-card--sage reveal d-5">
+            <p class="t-overline prop-overline">WEEKLY RHYTHM</p>
+            <h3 class="prop-title">Once a week, on your terms</h3>
+            <p class="t-body prop-body">No daily notifications, no streaks. One check-in a week, when you're both ready. The ritual of it is the point.</p>
+          </div>
+          <div class="prop-card prop-card--ochre reveal d-6">
+            <p class="t-overline prop-overline">ONE PRICE</p>
+            <h3 class="prop-title">One subscription, both partners</h3>
+            <p class="t-body prop-body">One subscription covers the couple. Your partner joins with an invite code — they never see a paywall.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Anti-positioning -->
+    <div class="band-tinted">
+      <section class="section-pad">
+        <div class="container">
+          <div class="section-header">
+            <p class="t-overline section-overline reveal d-0">WHAT KINDRED DOESN'T DO</p>
+            <h2 class="t-title section-headline reveal d-1">Your relationship isn't a game</h2>
+          </div>
+          <div class="anti-grid">
+            <div class="anti-item reveal d-2">
+              <p class="t-body-medium anti-title">We don't score your relationship.</p>
+              <p class="t-body anti-body">No points, no percentages, no "relationship health" number.</p>
+            </div>
+            <div class="anti-item reveal d-3">
+              <p class="t-body-medium anti-title">We don't give advice.</p>
+              <p class="t-body anti-body">The app shows you what each of you said. What you do with it is yours.</p>
+            </div>
+            <div class="anti-item reveal d-4">
+              <p class="t-body-medium anti-title">We don't nag.</p>
+              <p class="t-body anti-body">No daily push notifications, no guilt about missed weeks.</p>
+            </div>
+            <div class="anti-item reveal d-5">
+              <p class="t-body-medium anti-title">We don't gamify.</p>
+              <p class="t-body anti-body">No streaks, no badges, no leaderboard.</p>
+            </div>
+            <div class="anti-item reveal d-6">
+              <p class="t-body-medium anti-title">We don't charge per person.</p>
+              <p class="t-body anti-body">One subscription, both partners.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Who it's for -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="section-header">
+          <p class="t-overline section-overline reveal d-0">WHO IT'S FOR</p>
+          <h2 class="t-title section-headline reveal d-1">Built for couples who are already trying</h2>
+        </div>
+        <div class="audience-content reveal d-2">
+          <p>You care about your relationship. You talk about what needs to change. But life happens, and the things you mean to do slip through the cracks — not from lack of effort, but from lack of structure.</p>
+          <p><span class="audience-emphasis">Kindred is that structure.</span> A 15–20 minute weekly check-in that turns intention into action.</p>
+        </div>
+        <div class="audience-note reveal d-3">Kindred is designed for couples who can sit down together. It's a synchronous experience — you do it at the same time, in the same room.</div>
+      </div>
+    </section>
+
+    <hr class="hr-deco">
+
+    <!-- Closing CTA -->
+    <section class="closing">
+      <div class="container">
+        <div class="closing-heart reveal d-0">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </div>
+        <h2 class="t-title closing-headline reveal d-1">Check in with each other</h2>
+        <p class="t-body closing-sub reveal d-2">A weekly ritual that bridges the gap between what you intend to do and what actually happens.</p>
+        <div class="reveal d-3">
+          <span class="coming-soon-label"><span class="coming-soon-dot"></span> Coming to iOS soon</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p class="footer-text">&copy; 2026 Kindred</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('has-animations');
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+        document.querySelectorAll('.reveal, .reveal-hero').forEach(function(el) {
+          observer.observe(el);
+        });
+      }
+      var header = document.getElementById('site-header');
+      var scrolled = false;
+      window.addEventListener('scroll', function() {
+        var s = window.scrollY > 8;
+        if (s !== scrolled) { scrolled = s; header.classList.toggle('scrolled', scrolled); }
+      }, { passive: true });
+    })();
+  </script>
+
+</body>
+</html>

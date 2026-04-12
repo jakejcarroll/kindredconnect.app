@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kindred — Weekly Couples Check-In App</title>
+<meta name="description" content="A weekly couples check-in app. Answer the same questions privately, reveal answers together, and make commitments you'll actually follow through on. iOS." />
+<link rel="canonical" href="https://kindredconnect.app/" />
+<meta property="og:title" content="Kindred — Weekly Couples Check-In App" />
+<meta property="og:description" content="Answer the same questions privately. Reveal answers together. Make real commitments. The only couples app with weekly follow-through." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kindredconnect.app/" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --primary: #AD6055;
+  --primary-hover: #A8574A;
+  --primary-light: rgba(173, 96, 85, 0.08);
+  --primary-lighter: rgba(173, 96, 85, 0.05);
+  --card-bg: #FAF0E3;
+  --secondary-fill: #F2DFCA;
+  --foreground: #3D2F25;
+  --text-secondary: #7B6C60;
+  --text-tertiary: #968A7C;
+  --background: #F7F2EE;
+  --surface: #FFFFFF;
+  --surface-section: #EDE8E2;
+  --border: #E1DBD4;
+  --sage: #94A87C;
+  --dusty-blue: #8DA0B5;
+  --ochre: #C9A655;
+  --footer-bg: #3D2F25;
+
+  --font-serif: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+  --font-sans: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --shadow-card: 0px 2px 8px rgba(61,47,37,0.06), 0px 1px 3px rgba(61,47,37,0.04);
+  --shadow-elevated: 0px 4px 16px rgba(61,47,37,0.08), 0px 2px 6px rgba(61,47,37,0.04);
+  --shadow-button: 0 2px 8px rgba(173,96,85,0.18);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  color: var(--foreground);
+  background: var(--background);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3 { font-family: var(--font-serif); font-weight: 400; }
+
+a { color: var(--primary); text-decoration: none; }
+a:hover { color: var(--primary-hover); }
+
+img { max-width: 100%; display: block; }
+
+.container { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+
+/* ── NAV ── */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(247, 242, 238, 0.85);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1120px; margin: 0 auto; padding: 0 28px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px;
+}
+.nav-logo {
+  font-family: var(--font-serif); font-size: 22px; color: var(--primary);
+  letter-spacing: -0.3px;
+}
+.nav-right { display: flex; align-items: center; gap: 24px; }
+.nav-link {
+  font-size: 14px; font-weight: 500; color: var(--text-secondary);
+  transition: color 200ms;
+}
+.nav-link:hover { color: var(--foreground); }
+.btn-pill {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--primary); color: #fff;
+  font-family: var(--font-sans); font-size: 14px; font-weight: 500;
+  padding: 8px 20px; border-radius: 9999px; border: none; cursor: pointer;
+  box-shadow: var(--shadow-button);
+  transition: background 200ms var(--ease-out), transform 150ms;
+  letter-spacing: 0.2px;
+}
+.btn-pill:hover { background: var(--primary-hover); }
+.btn-pill:active { transform: scale(0.97); }
+
+/* ── HERO ── */
+.hero {
+  padding: 80px 0 64px;
+  background: linear-gradient(180deg, var(--background) 0%, var(--surface-section) 100%);
+}
+.hero-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+}
+.hero h1 {
+  font-size: 48px; line-height: 1.15; letter-spacing: -0.5px;
+  margin-bottom: 24px;
+}
+.hero-sub {
+  font-size: 18px; line-height: 1.6; color: var(--text-secondary);
+  max-width: 500px; margin-bottom: 32px;
+}
+.hero-cta-group { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--primary); color: #fff;
+  font-family: var(--font-sans); font-size: 16px; font-weight: 500;
+  padding: 14px 32px; border-radius: 16px; border: none; cursor: pointer;
+  box-shadow: var(--shadow-button);
+  transition: background 200ms var(--ease-out), transform 150ms;
+  letter-spacing: 0.3px;
+}
+.btn-primary:hover { background: var(--primary-hover); }
+.btn-primary:active { transform: scale(0.98); }
+.btn-primary svg { width: 20px; height: 20px; }
+.hero-meta { font-size: 13px; color: var(--text-tertiary); }
+
+/* Hero image placeholder */
+.hero-image-area {
+  position: relative;
+  display: flex; justify-content: center; align-items: center;
+}
+.phone-mock {
+  width: 240px; height: 480px;
+  background: var(--surface);
+  border-radius: 32px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-elevated);
+  overflow: hidden;
+  position: relative;
+}
+.phone-mock.dark { background: #1E1814; border-color: #3D342E; }
+.phone-mock + .phone-mock { margin-left: -40px; }
+
+.phone-screen { padding: 48px 20px 20px; height: 100%; display: flex; flex-direction: column; }
+.phone-notch {
+  position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+  width: 80px; height: 24px; background: var(--foreground);
+  border-radius: 12px; opacity: 0.08;
+}
+.phone-mock.dark .phone-notch { background: #F5E0D8; opacity: 0.1; }
+
+/* phone content simulations */
+.mock-overline {
+  font-family: var(--font-sans); font-size: 10px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 1.2px;
+  color: var(--primary); margin-bottom: 12px; opacity: 0.8;
+}
+.mock-question {
+  font-family: var(--font-serif); font-size: 16px; line-height: 1.4;
+  color: var(--foreground); margin-bottom: 24px;
+}
+.phone-mock.dark .mock-question { color: #F5E0D8; }
+.mock-slider {
+  height: 6px; border-radius: 3px; background: var(--secondary-fill);
+  position: relative; margin-bottom: 8px;
+}
+.mock-slider-fill {
+  position: absolute; left: 0; top: 0; height: 100%; border-radius: 3px;
+  background: var(--primary);
+}
+.mock-slider-thumb {
+  position: absolute; top: 50%; transform: translate(-50%, -50%);
+  width: 20px; height: 20px; border-radius: 50%; background: var(--primary);
+  box-shadow: 0 1px 4px rgba(173,96,85,0.3);
+}
+.mock-labels {
+  display: flex; justify-content: space-between;
+  font-size: 9px; color: var(--text-tertiary);
+}
+.phone-mock.dark .mock-labels { color: #7B6C60; }
+.phone-mock.dark .mock-slider { background: #3A302B; }
+.phone-mock.dark .mock-slider-fill { background: #CC8976; }
+.phone-mock.dark .mock-slider-thumb { background: #CC8976; }
+.phone-mock.dark .mock-overline { color: #CC8976; }
+
+/* Reveal mock */
+.mock-reveal-row {
+  display: flex; gap: 10px; margin-bottom: 14px; align-items: center;
+}
+.mock-avatar {
+  width: 26px; height: 26px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-serif); font-size: 12px; font-weight: 500;
+  flex-shrink: 0;
+}
+.mock-avatar.user { background: rgba(173,96,85,0.12); color: var(--primary); }
+.mock-avatar.partner { background: rgba(201,166,85,0.12); color: var(--ochre); }
+.phone-mock.dark .mock-avatar.user { background: rgba(204,137,118,0.15); color: #CC8976; }
+.phone-mock.dark .mock-avatar.partner { background: rgba(201,166,85,0.15); color: var(--ochre); }
+.mock-bar {
+  height: 8px; border-radius: 4px; flex: 1;
+}
+.mock-bar.user { background: var(--primary); }
+.mock-bar.partner { background: var(--ochre); }
+.mock-rating-num {
+  font-family: var(--font-serif); font-size: 14px; width: 18px; text-align: right;
+}
+.phone-mock.dark .mock-rating-num { color: #F5E0D8; }
+.mock-divergence {
+  font-size: 8px; color: var(--primary); font-weight: 600;
+  background: rgba(173,96,85,0.08); border-radius: 4px;
+  padding: 2px 5px; margin-left: 4px; white-space: nowrap;
+}
+.phone-mock.dark .mock-divergence { color: #CC8976; background: rgba(204,137,118,0.1); }
+.mock-q-label {
+  font-size: 11px; color: var(--text-secondary); margin-bottom: 6px;
+  font-weight: 500;
+}
+.phone-mock.dark .mock-q-label { color: #968A7C; }
+
+/* ── SECTION UTILITIES ── */
+.section { padding: 80px 0; }
+.section-alt { background: var(--surface-section); }
+.section-warm { background: var(--surface-section); }
+.section-dark { background: var(--footer-bg); color: #F5E0D8; }
+.section h2 {
+  font-size: 32px; line-height: 1.25; margin-bottom: 16px;
+}
+.section-intro {
+  font-size: 16px; color: var(--text-secondary); max-width: 580px;
+  line-height: 1.5; margin-bottom: 48px;
+}
+
+/* ── HOW IT WORKS ── */
+.steps { display: flex; flex-direction: column; gap: 72px; }
+.step {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;
+}
+.step:nth-child(even) .step-content { order: 2; }
+.step:nth-child(even) .step-visual { order: 1; }
+.step-num {
+  font-family: var(--font-serif); font-size: 48px; color: var(--primary);
+  opacity: 0.18; line-height: 1; margin-bottom: 8px;
+}
+.step h3 { font-size: 24px; margin-bottom: 12px; }
+.step p { font-size: 16px; line-height: 1.5; color: var(--text-secondary); max-width: 440px; }
+.step-visual {
+  display: flex; justify-content: center;
+}
+.step-phone {
+  width: 200px; height: 400px;
+  background: var(--surface); border-radius: 28px;
+  border: 1px solid var(--border); box-shadow: var(--shadow-card);
+  overflow: hidden; position: relative;
+}
+.step-phone.dark { background: #1E1814; border-color: #3D342E; }
+.step-phone .phone-notch {
+  width: 64px; height: 20px; top: 8px;
+}
+.step-phone .phone-screen { padding: 40px 16px 16px; }
+
+/* ritual mock */
+.ritual-circle-outer {
+  width: 100px; height: 100px; border-radius: 50%;
+  border: 2px solid rgba(173,96,85,0.2);
+  display: flex; align-items: center; justify-content: center;
+  margin: 40px auto 16px;
+  animation: ritual-breathe 3s ease-in-out infinite;
+}
+@keyframes ritual-breathe {
+  0%, 100% { transform: scale(1); border-color: rgba(173,96,85,0.2); }
+  50% { transform: scale(1.06); border-color: rgba(173,96,85,0.35); }
+}
+.ritual-circle-inner {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), #CC8976);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 16px rgba(173,96,85,0.3);
+}
+.ritual-label {
+  font-family: var(--font-serif); font-size: 13px; color: #fff;
+  font-style: italic;
+}
+.ritual-avatars {
+  display: flex; justify-content: center; gap: 8px; margin-top: 12px;
+}
+.ritual-avatars .mock-avatar { width: 28px; height: 28px; font-size: 13px; }
+.ritual-text {
+  text-align: center; font-size: 11px; color: var(--text-tertiary);
+  margin-top: 10px;
+}
+.step-phone.dark .ritual-text { color: #7B6C60; }
+.step-phone.dark .ritual-circle-outer { border-color: rgba(204,137,118,0.2); }
+@keyframes ritual-breathe-dark {
+  0%, 100% { border-color: rgba(204,137,118,0.2); }
+  50% { border-color: rgba(204,137,118,0.35); }
+}
+
+/* commitments mock */
+.mock-commitment {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 0; border-bottom: 1px solid var(--border);
+}
+.mock-commitment:last-child { border: none; }
+.mock-check {
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 1.5px solid var(--border); flex-shrink: 0;
+}
+.mock-check.done {
+  background: var(--primary); border-color: var(--primary);
+  position: relative;
+}
+.mock-check.done::after {
+  content: '✓'; color: #fff; font-size: 11px;
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+}
+.mock-commit-text { font-size: 11px; color: var(--foreground); line-height: 1.3; }
+.mock-commit-text.struck { text-decoration: line-through; color: var(--text-tertiary); }
+.mock-commit-badge {
+  font-size: 8px; font-weight: 600; text-transform: uppercase;
+  padding: 2px 6px; border-radius: 4px; letter-spacing: 0.5px;
+  margin-left: auto; white-space: nowrap;
+}
+.mock-commit-badge.task { background: rgba(173,96,85,0.08); color: var(--primary); }
+.mock-commit-badge.habit { background: rgba(148,168,124,0.12); color: var(--sage); }
+
+/* ── BATCHES ── */
+.batch-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+}
+.batch-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform 300ms var(--ease-out), box-shadow 300ms;
+}
+.batch-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-elevated);
+}
+.batch-accent { height: 4px; }
+.batch-body { padding: 24px 20px; }
+.batch-name {
+  font-family: var(--font-serif); font-size: 18px; margin-bottom: 12px;
+}
+.batch-questions { list-style: none; }
+.batch-questions li {
+  font-size: 14px; line-height: 1.55; color: var(--text-secondary);
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(225,219,212,0.5);
+}
+.batch-questions li:last-child { border: none; }
+.batch-note {
+  text-align: center; font-size: 14px; color: var(--text-tertiary);
+  margin-top: 32px;
+}
+
+/* ── BETWEEN CHECK-INS ── */
+.between-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+.between-card {
+  padding: 32px 28px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-card);
+}
+.between-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px; font-size: 20px;
+}
+.between-card h3 { font-size: 20px; margin-bottom: 10px; }
+.between-card p { font-size: 15px; line-height: 1.5; color: var(--text-secondary); }
+
+/* ── ANTI-POSITIONING ── */
+.anti-list { max-width: 640px; display: flex; flex-direction: column; gap: 28px; }
+.anti-item p {
+  font-size: 16px; line-height: 1.5; color: var(--foreground);
+}
+.anti-item p strong { font-weight: 600; }
+
+/* ── WHO ── */
+.who-content { max-width: 640px; }
+.who-content p {
+  font-size: 16px; line-height: 1.5; color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+.who-content p:first-of-type { color: var(--foreground); }
+
+/* ── PRICING ── */
+.pricing-card {
+  max-width: 480px; margin: 0 auto;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 20px; padding: 48px 40px; text-align: center;
+  box-shadow: var(--shadow-elevated);
+  position: relative; overflow: hidden;
+}
+.pricing-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 4px; background: var(--primary);
+}
+.pricing-card h3 { font-size: 42px; margin-bottom: 4px; }
+.pricing-card .pricing-period { font-size: 16px; color: var(--text-secondary); margin-bottom: 8px; }
+.pricing-card .pricing-detail {
+  font-size: 14px; color: var(--text-tertiary); margin-bottom: 32px;
+  line-height: 1.5;
+}
+.pricing-divider {
+  height: 1px; background: var(--border); margin: 24px 0;
+}
+.pricing-monthly {
+  font-size: 15px; color: var(--text-secondary); margin-bottom: 32px;
+}
+.pricing-note {
+  font-size: 13px; color: var(--text-tertiary); margin-top: 16px;
+  line-height: 1.5;
+}
+
+/* ── FAQ ── */
+.faq-list { max-width: 680px; margin: 0 auto; }
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+.faq-question {
+  width: 100%; background: none; border: none; cursor: pointer;
+  font-family: var(--font-sans); font-size: 16px; font-weight: 500;
+  color: var(--foreground); text-align: left;
+  padding: 20px 0; display: flex; justify-content: space-between;
+  align-items: center; gap: 16px;
+}
+.faq-question:hover { color: var(--primary); }
+.faq-chevron {
+  width: 20px; height: 20px; flex-shrink: 0;
+  transition: transform 300ms var(--ease-out);
+}
+.faq-item.open .faq-chevron { transform: rotate(180deg); }
+.faq-answer {
+  max-height: 0; overflow: hidden;
+  transition: max-height 400ms var(--ease-out);
+}
+.faq-answer-inner {
+  padding: 0 0 20px;
+  font-size: 15px; line-height: 1.5; color: var(--text-secondary);
+}
+
+/* ── CLOSING CTA ── */
+.closing {
+  text-align: center; padding: 96px 0;
+}
+.closing h2 { font-size: 32px; margin-bottom: 16px; }
+.closing p {
+  font-size: 17px; color: var(--text-secondary);
+  max-width: 480px; margin: 0 auto 32px;
+}
+.closing-meta { font-size: 13px; color: var(--text-tertiary); margin-top: 12px; }
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--footer-bg); color: #C4A88A; padding: 48px 0 32px;
+}
+.footer-inner {
+  display: flex; flex-direction: column; align-items: center; gap: 20px;
+}
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { color: #C4A88A; font-size: 14px; font-weight: 500; }
+.footer-links a:hover { color: #F5E0D8; }
+.footer-seo {
+  max-width: 560px; text-align: center;
+  font-size: 12px; line-height: 1.6; color: #7B6C60;
+}
+.footer-copy { font-size: 12px; color: #7B6C60; }
+
+/* ── ANIMATIONS ── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-in {
+  opacity: 0; animation: fade-up 600ms var(--ease-out) forwards;
+}
+.delay-1 { animation-delay: 80ms; }
+.delay-2 { animation-delay: 160ms; }
+.delay-3 { animation-delay: 240ms; }
+.delay-4 { animation-delay: 320ms; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 48px; text-align: center; }
+  .hero h1 { font-size: 32px; }
+  .hero-sub { margin: 0 auto 28px; }
+  .hero-cta-group { align-items: center; }
+  .hero-image-area { justify-content: center; }
+  .phone-mock { width: 180px; height: 360px; }
+
+  .step { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+  .step:nth-child(even) .step-content { order: 1; }
+  .step:nth-child(even) .step-visual { order: 2; }
+  .step p { margin: 0 auto; }
+
+  .batch-grid { grid-template-columns: 1fr 1fr; }
+  .between-grid { grid-template-columns: 1fr; }
+
+  .section h2 { font-size: 28px; }
+  .nav-link.desktop-only { display: none; }
+}
+
+@media (max-width: 520px) {
+  .hero h1 { font-size: 32px; }
+  .batch-grid { grid-template-columns: 1fr; }
+  .phone-mock { width: 160px; height: 320px; }
+  .pricing-card { padding: 36px 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Kindred",
+  "operatingSystem": "iOS 16+",
+  "applicationCategory": "LifestyleApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "39.99",
+    "priceCurrency": "USD",
+    "description": "Annual subscription — covers both partners"
+  },
+  "description": "A weekly couples check-in app with private answers, simultaneous reveal, and commitment follow-through."
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a couples check-in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A couples check-in is a structured conversation where both partners reflect on the same questions — how you're feeling, what's going well, what needs attention — and then decide together what to do about it. Kindred turns this into a weekly ritual: private answers, a simultaneous reveal, and commitments you both make together."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does a Kindred check-in take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "About 15–20 minutes. You answer questions on your own screen, go through the reveal together, review your existing commitments, and make new ones."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do both partners need the app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Kindred requires both partners. One person creates the couple and shares an invite code. The other joins with that code. Both need the app installed on an iPhone."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Kindred available on Android?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not yet. Kindred is iOS only right now."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can we do the check-in remotely?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kindred is built for couples in the same room. The simultaneous hold-to-start and the real-time reveal are designed for face-to-face conversation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Kindred a therapy app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Kindred doesn't give advice, interpret your answers, or make therapeutic claims. It's a structure tool — it gives you a format for the conversation and helps you follow through on what you decide."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does Kindred cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "$39.99/year or $4.99/month — both plans cover both partners. One subscription, no per-person pricing. Billed through the App Store."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What kinds of questions does Kindred ask?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Questions about personal wellness, your connection as a couple, reflections on the week, and what's ahead. There are 22 questions across four themed batches — a typical check-in covers about 13. Questions rotate each week so it stays fresh."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often can we check in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Once a week. After you finish a check-in, there's a 5-day cooldown before you can start the next one. This is intentional — the time between check-ins is when you act on your commitments."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can my partner see my answers before I'm done?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. You both answer privately. Answers are only revealed when you've both finished, and neither of you can edit them after the reveal."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Kindred",
+  "url": "https://kindredconnect.app"
+}
+</script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Kindred</a>
+    <div class="nav-right">
+      <a href="#" class="nav-link desktop-only">Try the demo</a>
+      <a href="#" class="btn-pill">Download</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="animate-in">
+        <h1>Check in with each other</h1>
+        <p class="hero-sub">Kindred is a weekly couples check-in app. Answer the same questions privately, reveal your answers together, and make commitments for the week ahead. Then Kindred brings those commitments back — so the things you mean to do actually happen.</p>
+        <div class="hero-cta-group">
+          <a href="#" class="btn-primary">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            Download on the App Store
+          </a>
+          <span class="hero-meta">Available on iPhone. $39.99/year for both partners.</span>
+        </div>
+      </div>
+      <div class="hero-image-area animate-in delay-2">
+        <!-- Question phone -->
+        <div class="phone-mock">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="mock-overline">Connection</div>
+            <div class="mock-question">How emotionally connected did you feel to your partner this week?</div>
+            <div class="mock-slider">
+              <div class="mock-slider-fill" style="width: 68%"></div>
+              <div class="mock-slider-thumb" style="left: 68%"></div>
+            </div>
+            <div class="mock-labels">
+              <span>Very disconnected</span>
+              <span>Deeply connected</span>
+            </div>
+          </div>
+        </div>
+        <!-- Reveal phone -->
+        <div class="phone-mock dark">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="mock-overline">Reveal</div>
+            <div style="margin-bottom: 18px;">
+              <div class="mock-q-label">Emotional connection</div>
+              <div class="mock-reveal-row">
+                <div class="mock-avatar user">J</div>
+                <div class="mock-bar user" style="width: 68%"></div>
+                <span class="mock-rating-num">4</span>
+              </div>
+              <div class="mock-reveal-row">
+                <div class="mock-avatar partner">S</div>
+                <div class="mock-bar partner" style="width: 40%"></div>
+                <span class="mock-rating-num">2</span>
+                <span class="mock-divergence">Gap</span>
+              </div>
+            </div>
+            <div>
+              <div class="mock-q-label">Feeling overall</div>
+              <div class="mock-reveal-row">
+                <div class="mock-avatar user">J</div>
+                <div class="mock-bar user" style="width: 80%"></div>
+                <span class="mock-rating-num">4</span>
+              </div>
+              <div class="mock-reveal-row">
+                <div class="mock-avatar partner">S</div>
+                <div class="mock-bar partner" style="width: 72%"></div>
+                <span class="mock-rating-num">4</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how">
+  <div class="container">
+    <h2>How the weekly check-in works</h2>
+    <div class="steps">
+
+      <!-- Step 1 -->
+      <div class="step">
+        <div class="step-content">
+          <div class="step-num">01</div>
+          <h3>Start together</h3>
+          <p>One of you opens Kindred and the other gets a notification. You both hold a button at the same time — same room, same moment. The whole check-in takes about 15–20 minutes.</p>
+        </div>
+        <div class="step-visual">
+          <div class="step-phone dark">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="ritual-circle-outer">
+                <div class="ritual-circle-inner">
+                  <span class="ritual-label">Hold</span>
+                </div>
+              </div>
+              <div class="ritual-avatars">
+                <div class="mock-avatar user">J</div>
+                <div class="mock-avatar partner">S</div>
+              </div>
+              <div class="ritual-text">Hold together to begin</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step">
+        <div class="step-content">
+          <div class="step-num">02</div>
+          <h3>Answer privately</h3>
+          <p>You each answer the same questions on your own screen — a mix of ratings and open-ended reflections about your week, your connection, and what's ahead. Your partner can't see your answers until you're both done.</p>
+        </div>
+        <div class="step-visual">
+          <div class="step-phone">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="mock-overline" style="color: var(--sage);">Wellness</div>
+              <div class="mock-question" style="font-size: 14px;">How are you feeling overall this week?</div>
+              <div class="mock-slider">
+                <div class="mock-slider-fill" style="width: 55%; background: var(--sage);"></div>
+                <div class="mock-slider-thumb" style="left: 55%; background: var(--sage); box-shadow: 0 1px 4px rgba(148,168,124,0.3);"></div>
+              </div>
+              <div class="mock-labels">
+                <span>Really struggling</span>
+                <span>Thriving</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step">
+        <div class="step-content">
+          <div class="step-num">03</div>
+          <h3>Reveal at the same time</h3>
+          <p>Answers appear side by side, simultaneously. No editing after the fact. Where your ratings differ by a lot, the app highlights it.</p>
+        </div>
+        <div class="step-visual">
+          <div class="step-phone dark">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="mock-overline">Reveal</div>
+              <div style="margin-bottom: 14px;">
+                <div class="mock-q-label">Overall feeling</div>
+                <div class="mock-reveal-row">
+                  <div class="mock-avatar user" style="width:22px;height:22px;font-size:10px;">J</div>
+                  <div class="mock-bar user" style="width:75%"></div>
+                  <span class="mock-rating-num" style="font-size:12px;">4</span>
+                </div>
+                <div class="mock-reveal-row">
+                  <div class="mock-avatar partner" style="width:22px;height:22px;font-size:10px;">S</div>
+                  <div class="mock-bar partner" style="width:80%"></div>
+                  <span class="mock-rating-num" style="font-size:12px;">4</span>
+                </div>
+              </div>
+              <div>
+                <div class="mock-q-label">Partner responsiveness</div>
+                <div class="mock-reveal-row">
+                  <div class="mock-avatar user" style="width:22px;height:22px;font-size:10px;">J</div>
+                  <div class="mock-bar user" style="width:40%"></div>
+                  <span class="mock-rating-num" style="font-size:12px;">2</span>
+                </div>
+                <div class="mock-reveal-row">
+                  <div class="mock-avatar partner" style="width:22px;height:22px;font-size:10px;">S</div>
+                  <div class="mock-bar partner" style="width:90%"></div>
+                  <span class="mock-rating-num" style="font-size:12px;">5</span>
+                  <span class="mock-divergence">Gap</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="step">
+        <div class="step-content">
+          <div class="step-num">04</div>
+          <h3>Make commitments</h3>
+          <p>After the reveal, you decide together: what to do this week, what to keep doing, and what to let go of. You can create tasks (one-off things to do) and habits (ongoing things to sustain). Kindred brings them all back next week for review.</p>
+        </div>
+        <div class="step-visual">
+          <div class="step-phone">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="mock-overline">Commitments</div>
+              <div class="mock-commitment">
+                <div class="mock-check done"></div>
+                <span class="mock-commit-text struck">Book the therapist appointment</span>
+                <span class="mock-commit-badge task">Task</span>
+              </div>
+              <div class="mock-commitment">
+                <div class="mock-check"></div>
+                <span class="mock-commit-text">Plan a date night this week</span>
+                <span class="mock-commit-badge task">Task</span>
+              </div>
+              <div class="mock-commitment">
+                <div class="mock-check" style="border-color: var(--sage); background: rgba(148,168,124,0.1);"></div>
+                <span class="mock-commit-text">Phones away during dinner</span>
+                <span class="mock-commit-badge habit">Habit</span>
+              </div>
+              <div class="mock-commitment">
+                <div class="mock-check" style="border-color: var(--sage); background: rgba(148,168,124,0.1);"></div>
+                <span class="mock-commit-text">10 min check-in before bed</span>
+                <span class="mock-commit-badge habit">Habit</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BATCHES -->
+<section class="section section-alt" id="batches">
+  <div class="container">
+    <h2>What you'll talk about</h2>
+    <p class="section-intro">Each check-in moves through four themes. Some questions return every week so you can see how things shift. Others rotate in over time, so each check-in feels a bit different.</p>
+    <div class="batch-grid">
+      <div class="batch-card">
+        <div class="batch-accent" style="background: var(--sage);"></div>
+        <div class="batch-body">
+          <div class="batch-name">Wellness</div>
+          <ul class="batch-questions">
+            <li>How are you feeling overall this week?</li>
+            <li>What took most of your energy?</li>
+          </ul>
+        </div>
+      </div>
+      <div class="batch-card">
+        <div class="batch-accent" style="background: var(--dusty-blue);"></div>
+        <div class="batch-body">
+          <div class="batch-name">Connection</div>
+          <ul class="batch-questions">
+            <li>How emotionally connected did you feel?</li>
+            <li>What's one specific thing your partner did that you appreciated?</li>
+          </ul>
+        </div>
+      </div>
+      <div class="batch-card">
+        <div class="batch-accent" style="background: var(--ochre);"></div>
+        <div class="batch-body">
+          <div class="batch-name">Reflection</div>
+          <ul class="batch-questions">
+            <li>How well did you handle disagreements this week?</li>
+            <li>Is there anything that felt unresolved?</li>
+          </ul>
+        </div>
+      </div>
+      <div class="batch-card">
+        <div class="batch-accent" style="background: var(--primary);"></div>
+        <div class="batch-body">
+          <div class="batch-name">Forward</div>
+          <ul class="batch-questions">
+            <li>What's one thing you need from your partner in the week ahead?</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p class="batch-note">22 questions in total across the four batches. A typical check-in covers about 13 — the rest rotate in over time.</p>
+  </div>
+</section>
+
+<!-- BETWEEN CHECK-INS -->
+<section class="section" id="between">
+  <div class="container">
+    <h2>Where intention becomes action</h2>
+    <div class="between-grid">
+      <div class="between-card">
+        <div class="between-icon" style="background: rgba(173,96,85,0.08);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </div>
+        <h3>Commitments</h3>
+        <p>Tasks you said you'd do. Habits you're working on. They live on your home screen all week. When the next check-in starts, Kindred asks: done, keep going, or let go?</p>
+      </div>
+      <div class="between-card">
+        <div class="between-icon" style="background: rgba(141,160,181,0.1);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--dusty-blue)" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h3>Notepad</h3>
+        <p>Something comes up mid-week that you want to bring to the check-in? Write it down. General notes are there when you sit down together and cleared after each check-in.</p>
+      </div>
+      <div class="between-card">
+        <div class="between-icon" style="background: rgba(201,166,85,0.1);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ochre)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>History</h3>
+        <p>Every past check-in is saved — your answers and your partner's, side by side. Nothing gets edited after the fact. It's an honest record of how things have been, week to week.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANTI-POSITIONING -->
+<section class="section section-warm" id="anti">
+  <div class="container">
+    <h2>Designed to get out of the way</h2>
+    <div class="who-content" style="margin-top: 24px;">
+      <p>Your answers, side by side, unedited. No relationship health scores. No advice or interpretation. No streaks or badges. Kindred shows you what each of you actually said — what you do with it is yours.</p>
+      <p>You'll get a notification when your partner starts a check-in, and an optional mid-week nudge about your commitments. Both can be turned off. One subscription covers both of you.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section class="section" id="who">
+  <div class="container">
+    <h2>Built for couples who are already trying</h2>
+    <div class="who-content" style="margin-top: 24px;">
+      <p>You care about your relationship. You talk about what needs to change. But life happens, and the things you mean to do slip through the cracks — not from lack of effort, but from lack of structure.</p>
+      <p>Kindred is that structure. A 15–20 minute weekly relationship check-in that turns intention into action.</p>
+      <p>Kindred is designed for couples who can sit down together. It's a synchronous experience — you do it at the same time, in the same room. Both partners need the app installed on their iPhone.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section section-alt" id="pricing">
+  <div class="container">
+    <h2 style="text-align: center;">One price, both of you</h2>
+    <div style="height: 36px;"></div>
+    <div class="pricing-card">
+      <h3>$39.99<span style="font-family: var(--font-sans); font-size: 18px; font-weight: 400; color: var(--text-secondary);">/year</span></h3>
+      <div class="pricing-detail">That's less than $3.50 a month for both partners. One subscription, no per-person pricing. The partner who joins by invite code never sees a paywall.</div>
+      <div class="pricing-divider"></div>
+      <div class="pricing-monthly">Or <strong>$4.99/month</strong> if you'd rather go month to month.</div>
+      <a href="#" class="btn-primary" style="width: 100%; justify-content: center;">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        Download on the App Store
+      </a>
+      <p class="pricing-note">Both plans are billed through the App Store. You can cancel any time in your iPhone settings.</p>
+      <p class="pricing-note" style="margin-top: 8px;">No free trial — but the app has an interactive demo you can try before signing up.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="container">
+    <h2 style="text-align: center;">Common questions</h2>
+    <div style="height: 36px;"></div>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What is a couples check-in?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">A couples check-in is a structured conversation where both partners reflect on the same questions — how you're feeling, what's going well, what needs attention — and then decide together what to do about it. Kindred turns this into a weekly ritual: private answers, a simultaneous reveal, and commitments you both make together.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          How long does a Kindred check-in take?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">About 15–20 minutes. You answer questions on your own screen, go through the reveal together, review your existing commitments, and make new ones.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Do both partners need the app?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">Yes. Kindred requires both partners. One person creates the couple and shares an invite code. The other joins with that code. Both need the app installed on an iPhone.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Is Kindred available on Android?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">Not yet. Kindred is iOS only right now.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Can we do the check-in remotely?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">Kindred is built for couples in the same room. The simultaneous hold-to-start and the real-time reveal are designed for face-to-face conversation.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Is Kindred a therapy app?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">No. Kindred doesn't give advice, interpret your answers, or make therapeutic claims. It's a structure tool — it gives you a format for the conversation and helps you follow through on what you decide. If you're looking for guided therapy, Kindred isn't that.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          How much does Kindred cost?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">$39.99/year or $4.99/month — both plans cover both partners. One subscription, no per-person pricing. Billed through the App Store.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What kinds of questions does Kindred ask?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">Questions about personal wellness, your connection as a couple, reflections on the week, and what's ahead. There are 22 questions across four themed batches — a typical check-in covers about 13. Questions rotate each week so it stays fresh. A mix of 1–5 ratings and open-ended text — no quizzes, no right answers.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          How often can we check in?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">Once a week. After you finish a check-in, there's a 5-day cooldown before you can start the next one. This is intentional — the time between check-ins is when you act on your commitments.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Can my partner see my answers before I'm done?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">No. You both answer privately. Answers are only revealed when you've both finished, and neither of you can edit them after the reveal.</div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING CTA -->
+<section class="closing">
+  <div class="container">
+    <h2>Check in with each other</h2>
+    <p>A weekly relationship ritual. Same questions, honest answers, and real commitments.</p>
+    <a href="#" class="btn-primary">
+      <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      Download on the App Store
+    </a>
+    <p class="closing-meta">$39.99/year for both partners. Available on iPhone.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner container">
+    <div class="footer-links">
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Use</a>
+      <a href="mailto:support@kindredconnect.app">Contact</a>
+    </div>
+    <p class="footer-seo">Kindred is a weekly couples check-in app for iPhone. Partners answer the same questions privately, reveal answers at the same time, and make commitments together — tasks to do and habits to sustain. The only relationship app that connects what you talk about to what you actually do. Available on the App Store.</p>
+    <p class="footer-copy">© 2026 Kindred Connect</p>
+  </div>
+</footer>
+
+<script>
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const answer = item.querySelector('.faq-answer');
+  const isOpen = item.classList.contains('open');
+
+  // close all
+  document.querySelectorAll('.faq-item.open').forEach(el => {
+    el.classList.remove('open');
+    el.querySelector('.faq-answer').style.maxHeight = '0';
+  });
+
+  if (!isOpen) {
+    item.classList.add('open');
+    answer.style.maxHeight = answer.scrollHeight + 'px';
+  }
+}
+
+// Intersection Observer for scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.step, .batch-card, .between-card, .anti-item').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 500ms cubic-bezier(0.22,1,0.36,1), transform 500ms cubic-bezier(0.22,1,0.36,1)';
+  observer.observe(el);
+});
+
+// Stagger batch cards
+document.querySelectorAll('.batch-card').forEach((el, i) => {
+  el.style.transitionDelay = (i * 80) + 'ms';
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Kindred</title>
+<meta name="description" content="Privacy policy for Kindred, a weekly couples check-in app. How we collect, use, store, and protect your personal information." />
+<link rel="canonical" href="https://kindredconnect.app/privacy" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --primary: #AD6055;
+  --primary-hover: #A8574A;
+  --foreground: #3D2F25;
+  --text-secondary: #7B6C60;
+  --text-tertiary: #968A7C;
+  --background: #F7F2EE;
+  --surface: #FFFFFF;
+  --border: #E1DBD4;
+  --footer-bg: #3D2F25;
+
+  --font-serif: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+  --font-sans: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --shadow-button: 0 2px 8px rgba(173,96,85,0.18);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  color: var(--foreground);
+  background: var(--background);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3 { font-family: var(--font-serif); font-weight: 400; }
+
+a { color: var(--primary); text-decoration: none; }
+a:hover { color: var(--primary-hover); }
+
+/* ── NAV ── */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(247, 242, 238, 0.85);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1120px; margin: 0 auto; padding: 0 28px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px;
+}
+.nav-logo {
+  font-family: var(--font-serif); font-size: 22px; color: var(--primary);
+  letter-spacing: -0.3px;
+}
+.nav-right { display: flex; align-items: center; gap: 24px; }
+.btn-pill {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--primary); color: #fff;
+  font-family: var(--font-sans); font-size: 14px; font-weight: 500;
+  padding: 8px 20px; border-radius: 9999px; border: none; cursor: pointer;
+  box-shadow: var(--shadow-button);
+  transition: background 200ms var(--ease-out), transform 150ms;
+  letter-spacing: 0.2px;
+}
+.btn-pill:hover { background: var(--primary-hover); }
+.btn-pill:active { transform: scale(0.97); }
+
+/* ── LEGAL CONTENT ── */
+.legal {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 64px 28px 96px;
+}
+.legal h1 {
+  font-size: 36px;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.legal-meta {
+  font-size: 14px;
+  color: var(--text-tertiary);
+  margin-bottom: 48px;
+}
+.legal h2 {
+  font-size: 22px;
+  margin-top: 48px;
+  margin-bottom: 16px;
+}
+.legal h3 {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 28px;
+  margin-bottom: 10px;
+}
+.legal p {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+.legal ul, .legal ol {
+  margin-bottom: 16px;
+  padding-left: 24px;
+}
+.legal li {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+.legal strong { color: var(--foreground); }
+.legal table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+.legal th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--foreground);
+  padding: 10px 12px;
+  border-bottom: 2px solid var(--border);
+}
+.legal td {
+  padding: 10px 12px;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.legal hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 48px 0;
+}
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--footer-bg); color: #C4A88A; padding: 48px 0 32px;
+}
+.footer-inner {
+  max-width: 1120px; margin: 0 auto; padding: 0 28px;
+  display: flex; flex-direction: column; align-items: center; gap: 20px;
+}
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { color: #C4A88A; font-size: 14px; font-weight: 500; }
+.footer-links a:hover { color: #F5E0D8; }
+.footer-copy { font-size: 12px; color: #7B6C60; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  .legal { padding: 40px 20px 64px; }
+  .legal h1 { font-size: 28px; }
+  .legal h2 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Kindred</a>
+    <div class="nav-right">
+      <a href="#" class="btn-pill">Download</a>
+    </div>
+  </div>
+</nav>
+
+<!-- CONTENT -->
+<article class="legal">
+  <h1>Privacy policy</h1>
+  <p class="legal-meta">Kindred Connect · Effective 11 April 2026 · Last updated 11 April 2026</p>
+
+  <h2>1. Who we are</h2>
+  <p>Kindred is a weekly couples check-in app built by Kindred Connect ("we", "us", "our"). This privacy policy explains how we collect, use, store, and protect your personal information when you use the Kindred mobile application ("the App").</p>
+  <p><strong>Contact:</strong> privacy@kindredconnect.app</p>
+
+  <h2>2. Information we collect</h2>
+
+  <h3>2.1 Account information</h3>
+  <ul>
+    <li><strong>Email address</strong> — used for authentication and account recovery.</li>
+    <li><strong>Display name</strong> — the name your partner sees within the App. This does not need to be your legal name.</li>
+  </ul>
+
+  <h3>2.2 Relationship information</h3>
+  <ul>
+    <li><strong>Partner pairing data</strong> — when you create or join a relationship in the App, we store the link between your account and your partner's account.</li>
+    <li><strong>Invite codes</strong> — temporary codes used to pair partners. These expire and are single-use.</li>
+  </ul>
+
+  <h3>2.3 Check-in data</h3>
+  <ul>
+    <li><strong>Responses to check-in questions</strong> — including numerical ratings and free-text answers across wellness, connection, reflection, and forward-looking categories.</li>
+    <li><strong>Review comments</strong> — written reflections shared between partners during a check-in session.</li>
+    <li><strong>Commitments</strong> — tasks and habits you create, including descriptions, categories, and status.</li>
+    <li><strong>Habit review ratings</strong> — ratings you give on your partner's habits during check-ins.</li>
+    <li><strong>Personal notes</strong> — private notes you write for yourself, which may be linked to commitments or used during check-ins.</li>
+  </ul>
+
+  <h3>2.4 Session data</h3>
+  <ul>
+    <li><strong>Check-in session metadata</strong> — timestamps, session status, and participation records.</li>
+    <li><strong>Session history</strong> — a permanent record of completed check-ins, including frozen snapshots of questions and commitments at the time of completion.</li>
+  </ul>
+
+  <h3>2.5 Device and technical data</h3>
+  <ul>
+    <li><strong>Push notification tokens</strong> — device-specific tokens used to deliver notifications (e.g., session invitations, mid-week commitment reminders).</li>
+    <li><strong>Device identifiers</strong> — standard technical identifiers transmitted during app usage.</li>
+    <li><strong>Crash reports and performance data</strong> — collected via Sentry to diagnose errors and improve app stability. This may include device type, operating system version, and stack traces. It does not include the content of your check-in responses.</li>
+  </ul>
+
+  <h3>2.6 Subscription data</h3>
+  <ul>
+    <li><strong>Subscription status</strong> — whether you have an active, trialing, or expired subscription. Managed through RevenueCat and Apple's in-app purchase system.</li>
+    <li><strong>We do not collect or store payment card details.</strong> All payment processing is handled by Apple through the App Store.</li>
+  </ul>
+
+  <h2>3. How we use your information</h2>
+  <ul>
+    <li><strong>Providing the service</strong> — running check-in sessions, storing your responses, syncing data between partners in real time, and maintaining your check-in history.</li>
+    <li><strong>Partner pairing</strong> — connecting you with your partner via invite codes.</li>
+    <li><strong>Notifications</strong> — sending push notifications for session invitations, partner activity, and mid-week commitment reminders.</li>
+    <li><strong>Subscription management</strong> — verifying your subscription status and managing access to premium features.</li>
+    <li><strong>Error monitoring and stability</strong> — using crash reports to identify and fix bugs.</li>
+    <li><strong>Product improvement</strong> — understanding usage patterns in aggregate to improve the App. We do not sell your data or use check-in content for advertising.</li>
+  </ul>
+
+  <h2>4. Legal basis for processing (GDPR)</h2>
+  <p>If you are in the European Economic Area (EEA) or United Kingdom, we process your data under the following legal bases:</p>
+  <ul>
+    <li><strong>Performance of a contract</strong> — processing necessary to provide the App and its features (account creation, check-ins, partner pairing, subscriptions).</li>
+    <li><strong>Legitimate interests</strong> — crash reporting, security, and aggregated product improvement, where these interests are not overridden by your rights.</li>
+    <li><strong>Consent</strong> — push notifications. You can withdraw consent at any time through your device settings.</li>
+  </ul>
+
+  <h2>5. Who we share your data with</h2>
+
+  <h3>5.1 Your partner</h3>
+  <p>Check-in responses, review comments, and commitments are shared with your paired partner as a core function of the App. Personal notes are private and are never shared with your partner.</p>
+
+  <h3>5.2 Service providers</h3>
+  <p>We use the following third-party services to operate the App:</p>
+  <table>
+    <thead>
+      <tr><th>Provider</th><th>Purpose</th><th>Data shared</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Supabase</strong></td><td>Database hosting, authentication, real-time sync</td><td>All account and check-in data (encrypted in transit and at rest)</td></tr>
+      <tr><td><strong>RevenueCat</strong></td><td>Subscription management</td><td>User identifier, subscription status, purchase events</td></tr>
+      <tr><td><strong>Apple (App Store)</strong></td><td>Payment processing, app distribution</td><td>Payment and transaction data (handled directly by Apple)</td></tr>
+      <tr><td><strong>Expo</strong></td><td>Push notification delivery</td><td>Push notification tokens and notification content</td></tr>
+      <tr><td><strong>Sentry</strong></td><td>Crash reporting and error monitoring</td><td>Device info, error logs, performance traces. No check-in content.</td></tr>
+    </tbody>
+  </table>
+  <p>These providers process data on our behalf under data processing agreements. They do not use your data for their own purposes.</p>
+
+  <h3>5.3 We do not</h3>
+  <ul>
+    <li>Sell your personal data to anyone.</li>
+    <li>Share your data with advertisers.</li>
+    <li>Use your check-in content for AI training.</li>
+    <li>Share data with data brokers.</li>
+  </ul>
+
+  <h3>5.4 Legal requirements</h3>
+  <p>We may disclose your information if required by law, regulation, legal process, or governmental request.</p>
+
+  <h2>6. Data retention</h2>
+  <ul>
+    <li><strong>Account and check-in data</strong> is retained for as long as your account is active.</li>
+    <li><strong>In-progress session data</strong> (answers being drafted during a check-in) is temporary and is either finalized into your permanent check-in record or deleted when a session is completed or abandoned.</li>
+    <li><strong>Expired invite codes</strong> are retained for a short period for abuse prevention, then deleted.</li>
+    <li><strong>Crash reports</strong> are retained by Sentry according to their retention policies (typically 90 days).</li>
+    <li><strong>After account deletion</strong>, your personal data is removed in accordance with Section 8 below.</li>
+  </ul>
+
+  <h2>7. Data security</h2>
+  <p>We implement appropriate technical and organisational measures to protect your data:</p>
+  <ul>
+    <li>All data is encrypted in transit (TLS) and at rest.</li>
+    <li>Row-level security policies ensure you can only access data belonging to your own relationship.</li>
+    <li>Authentication is required for all data access.</li>
+    <li>Sensitive service credentials are stored in secure vault infrastructure.</li>
+    <li>Push notification tokens are scoped to individual devices and users.</li>
+  </ul>
+  <p>No system is perfectly secure. If we become aware of a security breach affecting your personal data, we will notify you and any applicable regulator as required by law.</p>
+
+  <h2>8. Your rights</h2>
+  <p>Depending on your location, you may have some or all of the following rights:</p>
+  <ul>
+    <li><strong>Access</strong> — request a copy of the personal data we hold about you.</li>
+    <li><strong>Correction</strong> — request correction of inaccurate data.</li>
+    <li><strong>Deletion</strong> — request deletion of your account and associated data. When you delete your account, your personal data is removed. Permanent check-in records shared with your partner are anonymised (your user ID is disassociated) so your partner retains their own check-in history without your identifying information.</li>
+    <li><strong>Data portability</strong> — request your data in a portable format.</li>
+    <li><strong>Withdraw consent</strong> — for processing based on consent (e.g., push notifications), you can withdraw at any time.</li>
+    <li><strong>Object</strong> — object to processing based on legitimate interests.</li>
+    <li><strong>Lodge a complaint</strong> — with your local data protection authority.</li>
+  </ul>
+  <p><strong>California residents (CCPA):</strong> You have the right to know what personal information we collect, request its deletion, and opt out of its sale. We do not sell personal information. To exercise your rights, contact us at the address below.</p>
+  <p>To exercise any of these rights, contact us at <strong>privacy@kindredconnect.app</strong>. We will respond within 30 days (or sooner if required by applicable law).</p>
+
+  <h2>9. Children's privacy</h2>
+  <p>Kindred is not intended for anyone under the age of 18. We do not knowingly collect personal information from children. If we learn that we have collected data from someone under 18, we will delete it promptly.</p>
+
+  <h2>10. International data transfers</h2>
+  <p>Your data is processed and stored on servers that may be located outside your country of residence. Where data is transferred outside the EEA or UK, we ensure appropriate safeguards are in place (such as standard contractual clauses) in accordance with applicable data protection law.</p>
+
+  <h2>11. Push notifications</h2>
+  <p>We send push notifications for:</p>
+  <ul>
+    <li><strong>Session invitations</strong> — when your partner starts a check-in.</li>
+    <li><strong>Partner activity</strong> — when your partner completes a phase of the check-in.</li>
+    <li><strong>Commitment reminders</strong> — mid-week reminders about habits and tasks (sent approximately 4 days after your last check-in).</li>
+  </ul>
+  <p>You can disable push notifications at any time through your device settings. Disabling notifications does not affect your ability to use the App.</p>
+
+  <h2>12. Changes to this policy</h2>
+  <p>We may update this policy from time to time. We will notify you of material changes through the App or by email. The "Last Updated" date at the top of this page reflects the most recent revision.</p>
+
+  <h2>13. Contact us</h2>
+  <p>If you have questions about this privacy policy or your data, contact us at:</p>
+  <p><strong>Kindred Connect</strong><br>Email: privacy@kindredconnect.app</p>
+</article>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Use</a>
+      <a href="mailto:support@kindredconnect.app">Contact</a>
+    </div>
+    <p class="footer-copy">© 2026 Kindred Connect</p>
+  </div>
+</footer>
+
+</body>
+</html>

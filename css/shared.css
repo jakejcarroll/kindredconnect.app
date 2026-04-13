@@ -67,6 +67,7 @@ a:hover { color: var(--primary-hover); }
   transition: color 200ms;
 }
 .nav-link:hover { color: var(--foreground); }
+.nav-link:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 4px; }
 .btn-pill {
   display: inline-flex; align-items: center; justify-content: center;
   background: var(--primary); color: #fff;
@@ -77,6 +78,7 @@ a:hover { color: var(--primary-hover); }
   letter-spacing: 0.2px;
 }
 .btn-pill:hover { background: var(--primary-hover); color: #fff; }
+.btn-pill:focus-visible { outline: 2px solid var(--foreground); outline-offset: 3px; }
 .btn-pill:active { transform: scale(0.97); }
 
 /* ── PRIMARY CTA BUTTON ── */
@@ -90,6 +92,7 @@ a:hover { color: var(--primary-hover); }
   letter-spacing: 0.3px;
 }
 .btn-primary:hover { background: var(--primary-hover); color: #fff; }
+.btn-primary:focus-visible { outline: 2px solid var(--foreground); outline-offset: 3px; }
 .btn-primary:active { transform: scale(0.98); }
 .btn-primary svg { width: 20px; height: 20px; }
 
@@ -104,7 +107,8 @@ a:hover { color: var(--primary-hover); }
 .footer-links { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
 .footer-links a { color: #C4A88A; font-size: 14px; font-weight: 500; }
 .footer-links a:hover { color: #F5E0D8; }
-.footer-copy { font-size: 12px; color: #7B6C60; }
+.footer-links a:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; border-radius: 2px; }
+.footer-copy { font-size: 12px; color: #A69585; }
 
 /* ── REDUCED MOTION ── */
 @media (prefers-reduced-motion: reduce) {

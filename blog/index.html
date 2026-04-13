@@ -92,32 +92,70 @@ a:hover { color: var(--primary-hover); }
 
 /* ── BLOG HEADER ── */
 .blog-header {
-  padding: 64px 0 0;
-  text-align: center;
+  padding: 72px 0 48px;
 }
 .blog-header h1 {
   font-family: var(--font-serif);
-  font-size: 36px;
+  font-size: 40px;
   margin-bottom: 12px;
 }
 .blog-intro {
   font-size: 17px;
   color: var(--text-secondary);
   max-width: 520px;
-  margin: 0 auto;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 /* ── BLOG LISTING ── */
 .blog-listing {
-  padding: 48px 0 96px;
+  padding: 0 0 96px;
 }
 .container { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+
+/* ── FEATURED POST ── */
+.blog-featured {
+  margin-bottom: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--border);
+}
+.blog-featured-link {
+  display: block;
+  color: inherit;
+}
+.blog-featured-link:hover { color: inherit; }
+.blog-featured-link:hover .blog-featured-title {
+  color: var(--primary);
+}
+.blog-featured-date {
+  font-size: 14px;
+  color: var(--text-tertiary);
+  margin-bottom: 12px;
+}
+.blog-featured-title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  transition: color 200ms;
+}
+.blog-featured-excerpt {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin-bottom: 20px;
+}
+.blog-featured-read {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--primary);
+}
 
 /* ── BLOG CARDS ── */
 .blog-card-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
 }
 .blog-card {
@@ -176,8 +214,11 @@ a:hover { color: var(--primary-hover); }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 600px) {
-  .blog-header h1 { font-size: 28px; }
+  .blog-header { padding: 48px 0 36px; }
+  .blog-header h1 { font-size: 32px; }
   .blog-intro { font-size: 16px; }
+  .blog-featured { margin-bottom: 36px; padding-bottom: 36px; }
+  .blog-featured-title { font-size: 26px; }
   .blog-card-grid { grid-template-columns: 1fr; }
 }
 
@@ -227,13 +268,15 @@ a:hover { color: var(--primary-hover); }
 <!-- BLOG LISTING -->
 <section class="blog-listing">
   <div class="container">
-    <div class="blog-card-grid">
-      <a href="/blog/weekly-couples-check-in/" class="blog-card">
-        <p class="blog-card-date">April 13, 2026</p>
-        <h3 class="blog-card-title">How to Do a Weekly Couples Check-In</h3>
-        <p class="blog-card-excerpt">A practical guide to starting a weekly couples check-in. What to ask, how long it takes, and how to make it a habit that actually sticks.</p>
-        <span class="blog-card-link">Read more &rarr;</span>
+    <div class="blog-featured">
+      <a href="/blog/weekly-couples-check-in/" class="blog-featured-link">
+        <p class="blog-featured-date">April 13, 2026</p>
+        <h2 class="blog-featured-title">How to Do a Weekly Couples Check-In</h2>
+        <p class="blog-featured-excerpt">A practical guide to starting a weekly couples check-in. What to ask, how long it takes, and how to make it a habit that actually sticks.</p>
+        <span class="blog-featured-read">Read more &rarr;</span>
       </a>
+    </div>
+    <div class="blog-card-grid">
       <a href="/blog/couples-check-in-questions/" class="blog-card">
         <p class="blog-card-date">April 13, 2026</p>
         <h3 class="blog-card-title">30 Weekly Check-In Questions for Couples</h3>

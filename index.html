@@ -1057,6 +1057,53 @@ document.querySelectorAll('.step, .batch-card, .between-card').forEach(el => {
 document.querySelectorAll('.batch-card').forEach((el, i) => {
   el.style.transitionDelay = (i * 80) + 'ms';
 });
+
+// Locale-based pricing: GBP for UK visitors, USD for everyone else
+(function() {
+  var tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  if (tz !== 'Europe/London') return;
+
+  var yearly = '\u00a334.99';
+  var monthly = '\u00a33.99';
+  var perMonth = '\u00a33';
+
+  // Pricing card heading
+  var h3 = document.querySelector('.pricing-card h3');
+  if (h3) {
+    while (h3.firstChild) h3.removeChild(h3.firstChild);
+    h3.appendChild(document.createTextNode(yearly));
+    var span = document.createElement('span');
+    span.style.cssText = 'font-family: var(--font-sans); font-size: 18px; font-weight: 400; color: var(--text-secondary);';
+    span.textContent = '/year';
+    h3.appendChild(span);
+  }
+
+  // Pricing detail
+  var detail = document.querySelector('.pricing-detail');
+  if (detail) detail.textContent = "That\u2019s less than " + perMonth + " a month for both partners. One subscription, no per-person pricing. The partner who joins by invite code never sees a paywall.";
+
+  // Monthly option
+  var mo = document.querySelector('.pricing-monthly');
+  if (mo) {
+    while (mo.firstChild) mo.removeChild(mo.firstChild);
+    mo.appendChild(document.createTextNode('Or '));
+    var strong = document.createElement('strong');
+    strong.textContent = monthly + '/month';
+    mo.appendChild(strong);
+    mo.appendChild(document.createTextNode(" if you\u2019d rather go month to month."));
+  }
+
+  // FAQ answer
+  document.querySelectorAll('.faq-answer-inner').forEach(function(el) {
+    if (el.textContent.indexOf('$39.99') !== -1) {
+      el.textContent = yearly + '/year or ' + monthly + '/month \u2014 both plans cover both partners. One subscription, no per-person pricing. Billed through the App Store.';
+    }
+  });
+
+  // Closing CTA
+  var closing = document.querySelector('.closing-meta');
+  if (closing) closing.textContent = yearly + '/year for both partners. Available on iPhone.';
+})();
 </script>
 
 </body>

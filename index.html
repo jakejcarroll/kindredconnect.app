@@ -10,9 +10,13 @@
 <meta property="og:description" content="Answer the same questions independently. Reveal answers together. Make real commitments. A couples app with weekly check-ins and real follow-through." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://kindredconnect.app/" />
+<meta property="og:image" content="https://kindredconnect.app/images/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Kindred — Weekly Couples Check-In App for iPhone" />
+<meta name="twitter:image" content="https://kindredconnect.app/images/og.png" />
 <meta name="twitter:description" content="Answer the same questions independently. Reveal answers together. Make real commitments. A couples app with weekly check-ins and real follow-through." />
+<link rel="icon" type="image/png" href="/images/app-icon.png">
+<link rel="apple-touch-icon" href="/images/app-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -551,7 +555,9 @@ img { max-width: 100%; display: block; }
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Kindred",
-  "url": "https://kindredconnect.app"
+  "url": "https://kindredconnect.app",
+  "description": "A weekly couples check-in app. Answer the same questions independently, reveal answers together, and make commitments you'll actually follow through on.",
+  "email": "support@kindredconnect.app"
 }
 </script>
 </head>
@@ -907,83 +913,83 @@ img { max-width: 100%; display: block; }
     <div class="faq-list">
 
       <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
+        <button class="faq-question" id="faq-question-1" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-1">
           What is a couples check-in?
           <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="faq-answer"><div class="faq-answer-inner">A couples check-in is a structured conversation where both partners reflect on the same questions — how you're feeling, what's going well, what needs attention — and then decide together what to do about it. Kindred turns this into a weekly ritual: independent answers, a simultaneous reveal, and commitments you both make together. Read more in our <a href="/blog/weekly-couples-check-in/">guide to weekly couples check-ins</a>.</div></div>
+        <div class="faq-answer" id="faq-answer-1" role="region" aria-labelledby="faq-question-1"><div class="faq-answer-inner">A couples check-in is a structured conversation where both partners reflect on the same questions — how you're feeling, what's going well, what needs attention — and then decide together what to do about it. Kindred turns this into a weekly ritual: independent answers, a simultaneous reveal, and commitments you both make together. Read more in our <a href="/blog/weekly-couples-check-in/">guide to weekly couples check-ins</a>.</div></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
+        <button class="faq-question" id="faq-question-2" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-2">
           How long does a Kindred check-in take?
           <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="faq-answer"><div class="faq-answer-inner">About 15–20 minutes. You answer questions on your own screen, go through the reveal together, review your existing commitments, and make new ones.</div></div>
+        <div class="faq-answer" id="faq-answer-2" role="region" aria-labelledby="faq-question-2"><div class="faq-answer-inner">About 15–20 minutes. You answer questions on your own screen, go through the reveal together, review your existing commitments, and make new ones.</div></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
+        <button class="faq-question" id="faq-question-3" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-3">
           Do both partners need the app?
           <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="faq-answer"><div class="faq-answer-inner">Yes. Kindred requires both partners. One person creates the couple and shares an invite code. The other joins with that code. Both need the app installed on an iPhone.</div></div>
+        <div class="faq-answer" id="faq-answer-3" role="region" aria-labelledby="faq-question-3"><div class="faq-answer-inner">Yes. Kindred requires both partners. One person creates the couple and shares an invite code. The other joins with that code. Both need the app installed on an iPhone.</div></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
+        <button class="faq-question" id="faq-question-4" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-4">
           Is Kindred available on Android?
           <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="faq-answer"><div class="faq-answer-inner">Not yet. Kindred is iOS only right now.</div></div>
+        <div class="faq-answer" id="faq-answer-4" role="region" aria-labelledby="faq-question-4"><div class="faq-answer-inner">Not yet. Kindred is iOS only right now.</div></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
+        <button class="faq-question" id="faq-question-5" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-5">
           Can we do the check-in remotely?
           <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="faq-answer"><div class="faq-answer-inner">Kindred is built for couples in the same room. The simultaneous hold-to-start and the real-time reveal are designed for face-to-face conversation.</div></div>
+        <div class="faq-answer" id="faq-answer-5" role="region" aria-labelledby="faq-question-5"><div class="faq-answer-inner">Kindred is built for couples in the same room. The simultaneous hold-to-start and the real-time reveal are designed for face-to-face conversation.</div></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
+        <button class="faq-question" id="faq-question-6" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-6">
           Is Kindred a therapy app?
           <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="faq-answer"><div class="faq-answer-inner">No. Kindred doesn't give advice, interpret your answers, or make therapeutic claims. It's a structure tool — it gives you a format for the conversation and helps you follow through on what you decide. If you're looking for guided therapy, Kindred isn't that.</div></div>
+        <div class="faq-answer" id="faq-answer-6" role="region" aria-labelledby="faq-question-6"><div class="faq-answer-inner">No. Kindred doesn't give advice, interpret your answers, or make therapeutic claims. It's a structure tool — it gives you a format for the conversation and helps you follow through on what you decide. If you're looking for guided therapy, Kindred isn't that.</div></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
+        <button class="faq-question" id="faq-question-7" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-7">
           How much does Kindred cost?
           <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="faq-answer"><div class="faq-answer-inner">$39.99/year or $4.99/month — both plans cover both partners. One subscription, no per-person pricing. Billed through the App Store.</div></div>
+        <div class="faq-answer" id="faq-answer-7" role="region" aria-labelledby="faq-question-7"><div class="faq-answer-inner">$39.99/year or $4.99/month — both plans cover both partners. One subscription, no per-person pricing. Billed through the App Store.</div></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
+        <button class="faq-question" id="faq-question-8" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-8">
           What kinds of questions does Kindred ask?
           <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="faq-answer"><div class="faq-answer-inner">Questions about personal wellness, your connection as a couple, reflections on the week, and what's ahead. There are 22 questions across four themed batches — a typical check-in covers about 13. Questions rotate each week so it stays fresh. A mix of 1–5 ratings and open-ended text — no quizzes, no right answers. See our full list of <a href="/blog/couples-check-in-questions/">30 check-in questions for couples</a>.</div></div>
+        <div class="faq-answer" id="faq-answer-8" role="region" aria-labelledby="faq-question-8"><div class="faq-answer-inner">Questions about personal wellness, your connection as a couple, reflections on the week, and what's ahead. There are 22 questions across four themed batches — a typical check-in covers about 13. Questions rotate each week so it stays fresh. A mix of 1–5 ratings and open-ended text — no quizzes, no right answers. See our full list of <a href="/blog/couples-check-in-questions/">30 check-in questions for couples</a>.</div></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
+        <button class="faq-question" id="faq-question-9" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-9">
           How often can we check in?
           <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="faq-answer"><div class="faq-answer-inner">Once a week. After you finish a check-in, there's a 5-day cooldown before you can start the next one. This is intentional — the time between check-ins is when you act on your commitments.</div></div>
+        <div class="faq-answer" id="faq-answer-9" role="region" aria-labelledby="faq-question-9"><div class="faq-answer-inner">Once a week. After you finish a check-in, there's a 5-day cooldown before you can start the next one. This is intentional — the time between check-ins is when you act on your commitments.</div></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
+        <button class="faq-question" id="faq-question-10" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-10">
           Can my partner see my answers before I'm done?
           <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="faq-answer"><div class="faq-answer-inner">No. You each answer independently. Answers are only revealed when you've both finished, and neither of you can edit them after the reveal.</div></div>
+        <div class="faq-answer" id="faq-answer-10" role="region" aria-labelledby="faq-question-10"><div class="faq-answer-inner">No. You each answer independently. Answers are only revealed when you've both finished, and neither of you can edit them after the reveal.</div></div>
       </div>
 
     </div>
@@ -1027,11 +1033,13 @@ function toggleFaq(btn) {
   document.querySelectorAll('.faq-item.open').forEach(el => {
     el.classList.remove('open');
     el.querySelector('.faq-answer').style.maxHeight = '0';
+    el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
   });
 
   if (!isOpen) {
     item.classList.add('open');
     answer.style.maxHeight = answer.scrollHeight + 'px';
+    btn.setAttribute('aria-expanded', 'true');
   }
 }
 

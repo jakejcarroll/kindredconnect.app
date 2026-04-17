@@ -443,12 +443,6 @@ img { max-width: 100%; display: block; }
 }
 .closing-meta { font-size: 13px; color: var(--text-tertiary); margin-top: 20px; }
 
-/* ── FOOTER (homepage-only) ── */
-.footer-seo {
-  max-width: 560px; text-align: center;
-  font-size: 12px; line-height: 1.6; color: #A69585;
-}
-
 /* ── ANIMATIONS ── */
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(16px); }
@@ -485,8 +479,6 @@ img { max-width: 100%; display: block; }
 
   .batch-grid { grid-template-columns: 1fr 1fr; }
   .between-grid { grid-template-columns: 1fr; }
-
-  .nav-link.desktop-only { display: none; }
 }
 
 @media (max-width: 520px) {
@@ -640,7 +632,6 @@ img { max-width: 100%; display: block; }
   <div class="nav-inner">
     <a href="/" class="nav-logo">Kindred</a>
     <div class="nav-right">
-      <a href="#" class="nav-link desktop-only">Try the demo</a>
       <a href="/blog/" class="nav-link">Blog</a>
       <a href="#" class="btn-pill">Download</a>
     </div>
@@ -1084,7 +1075,7 @@ img { max-width: 100%; display: block; }
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-inner container">
+  <div class="footer-inner">
     <div class="footer-links">
       <a href="/blog/">Blog</a>
       <a href="/privacy">Privacy Policy</a>

@@ -60,6 +60,7 @@ a:hover { color: var(--primary-hover); }
   font-family: var(--font-serif); font-size: 22px; color: var(--primary);
   letter-spacing: -0.3px;
 }
+.nav-logo:focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; border-radius: 4px; }
 .nav-right { display: flex; align-items: center; gap: 24px; }
 .nav-link {
   font-size: 14px; font-weight: 500; color: var(--text-secondary);

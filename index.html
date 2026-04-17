@@ -17,9 +17,7 @@
 <meta name="twitter:description" content="Answer the same questions independently. Reveal answers together. Make real commitments. A couples app with weekly check-ins and real follow-through." />
 <link rel="icon" type="image/png" href="/images/app-icon.png">
 <link rel="apple-touch-icon" href="/images/app-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="preload" as="font" type="font/woff2" href="/fonts/dm-sans.woff2" crossorigin>
 <link rel="stylesheet" href="/css/shared.css">
 <style>
 :root {
@@ -508,12 +506,21 @@ img { max-width: 100%; display: block; }
   "name": "Kindred",
   "operatingSystem": "iOS 16+",
   "applicationCategory": "LifestyleApplication",
-  "offers": {
-    "@type": "Offer",
-    "price": "39.99",
-    "priceCurrency": "USD",
-    "description": "Annual subscription — covers both partners"
-  },
+  "offers": [
+    {
+      "@type": "Offer",
+      "price": "39.99",
+      "priceCurrency": "USD",
+      "description": "Annual subscription — covers both partners"
+    },
+    {
+      "@type": "Offer",
+      "price": "34.99",
+      "priceCurrency": "GBP",
+      "eligibleRegion": { "@type": "Country", "name": "GB" },
+      "description": "Annual subscription — covers both partners"
+    }
+  ],
   "description": "A weekly couples check-in app with independent answers, simultaneous reveal, and commitment follow-through."
 }
 </script>

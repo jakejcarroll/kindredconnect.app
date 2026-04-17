@@ -455,10 +455,19 @@ img { max-width: 100%; display: block; }
 .animate-in {
   opacity: 0; animation: fade-up 600ms var(--ease-out) forwards;
 }
-.delay-1 { animation-delay: 80ms; }
 .delay-2 { animation-delay: 160ms; }
-.delay-3 { animation-delay: 240ms; }
-.delay-4 { animation-delay: 320ms; }
+
+/* ── UTILITIES ── */
+.center-text { text-align: center; }
+.section-spacer { height: 36px; }
+.who-content--offset { margin-top: 24px; }
+.btn-primary--full { width: 100%; justify-content: center; }
+.pricing-period-suffix {
+  font-family: var(--font-sans); font-size: 18px; font-weight: 400;
+  color: var(--text-secondary);
+}
+.mock-avatar--sm { width: 22px; height: 22px; font-size: 10px; }
+.mock-rating-num--sm { font-size: 12px; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
@@ -608,6 +617,14 @@ img { max-width: 100%; display: block; }
 </head>
 <body>
 
+<!-- ICON SPRITE -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-app-store" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></symbol>
+  </defs>
+</svg>
+
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
@@ -630,7 +647,7 @@ img { max-width: 100%; display: block; }
         <p class="hero-sub">Kindred is a weekly couples check-in app. Answer the same questions independently, reveal your answers together, and make commitments for the week ahead. Then Kindred brings those commitments back — so the things you mean to do actually happen.</p>
         <div class="hero-cta-group">
           <a href="#" class="btn-primary">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#i-app-store"/></svg>
             Download on the App Store
           </a>
           <span class="hero-meta">Available on iPhone. $39.99/year for both partners.</span>
@@ -765,27 +782,27 @@ img { max-width: 100%; display: block; }
               <div style="margin-bottom: 14px;">
                 <div class="mock-q-label">Overall feeling</div>
                 <div class="mock-reveal-row">
-                  <div class="mock-avatar user" style="width:22px;height:22px;font-size:10px;">J</div>
+                  <div class="mock-avatar mock-avatar--sm user">J</div>
                   <div class="mock-bar user" style="width:75%"></div>
-                  <span class="mock-rating-num" style="font-size:12px;">4</span>
+                  <span class="mock-rating-num mock-rating-num--sm">4</span>
                 </div>
                 <div class="mock-reveal-row">
-                  <div class="mock-avatar partner" style="width:22px;height:22px;font-size:10px;">S</div>
+                  <div class="mock-avatar mock-avatar--sm partner">S</div>
                   <div class="mock-bar partner" style="width:80%"></div>
-                  <span class="mock-rating-num" style="font-size:12px;">4</span>
+                  <span class="mock-rating-num mock-rating-num--sm">4</span>
                 </div>
               </div>
               <div>
                 <div class="mock-q-label">How responsive your partner felt</div>
                 <div class="mock-reveal-row">
-                  <div class="mock-avatar user" style="width:22px;height:22px;font-size:10px;">J</div>
+                  <div class="mock-avatar mock-avatar--sm user">J</div>
                   <div class="mock-bar user" style="width:40%"></div>
-                  <span class="mock-rating-num" style="font-size:12px;">2</span>
+                  <span class="mock-rating-num mock-rating-num--sm">2</span>
                 </div>
                 <div class="mock-reveal-row">
-                  <div class="mock-avatar partner" style="width:22px;height:22px;font-size:10px;">S</div>
+                  <div class="mock-avatar mock-avatar--sm partner">S</div>
                   <div class="mock-bar partner" style="width:90%"></div>
-                  <span class="mock-rating-num" style="font-size:12px;">5</span>
+                  <span class="mock-rating-num mock-rating-num--sm">5</span>
                   <span class="mock-divergence">Saw it differently</span>
                 </div>
               </div>
@@ -912,7 +929,7 @@ img { max-width: 100%; display: block; }
 <section class="section section-alt" id="anti">
   <div class="container">
     <h2>It gets out of the way</h2>
-    <div class="who-content" style="margin-top: 24px;">
+    <div class="who-content who-content--offset">
       <p>Your answers, side by side, unedited. No relationship health scores. No advice or interpretation. No streaks or badges. Kindred shows you what each of you actually said — what you do with it is yours.</p>
       <p>You'll get a notification when your partner starts a check-in, and an optional mid-week reminder about your commitments. Both can be turned off. One subscription covers both of you.</p>
     </div>
@@ -923,7 +940,7 @@ img { max-width: 100%; display: block; }
 <section class="section" id="who">
   <div class="container">
     <h2>Built for couples who are already trying</h2>
-    <div class="who-content" style="margin-top: 24px;">
+    <div class="who-content who-content--offset">
       <p>You care about your relationship. You talk about what needs to change. But life happens, and the things you mean to do slip through the cracks — not from lack of effort, but from lack of structure.</p>
       <p>Kindred is that structure. A 15–20 minute weekly relationship check-in that gives those conversations somewhere to go.</p>
       <p>Kindred is designed for couples who can sit down together. You do it at the same time, side by side. Both partners need the app installed on their iPhone.</p>
@@ -934,15 +951,15 @@ img { max-width: 100%; display: block; }
 <!-- PRICING -->
 <section class="section section-alt" id="pricing">
   <div class="container">
-    <h2 style="text-align: center;">One subscription covers both of you</h2>
-    <div style="height: 36px;"></div>
+    <h2 class="center-text">One subscription covers both of you</h2>
+    <div class="section-spacer"></div>
     <div class="pricing-card">
-      <h3>$39.99<span style="font-family: var(--font-sans); font-size: 18px; font-weight: 400; color: var(--text-secondary);">/year</span></h3>
+      <h3>$39.99<span class="pricing-period-suffix">/year</span></h3>
       <div class="pricing-detail">That's less than $3.50 a month for both partners. One subscription, no per-person pricing. The partner who joins by invite code never sees a paywall.</div>
       <div class="pricing-divider"></div>
       <div class="pricing-monthly">Or <strong>$4.99/month</strong> if you'd rather go month to month.</div>
-      <a href="#" class="btn-primary" style="width: 100%; justify-content: center;">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:18px;height:18px;"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      <a href="#" class="btn-primary btn-primary--full">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="18" height="18"><use href="#i-app-store"/></svg>
         Download on the App Store
       </a>
       <p class="pricing-note">Both plans are billed through the App Store. You can cancel any time in your iPhone settings.</p>
@@ -954,86 +971,86 @@ img { max-width: 100%; display: block; }
 <!-- FAQ -->
 <section class="section" id="faq">
   <div class="container">
-    <h2 style="text-align: center;">Common questions</h2>
-    <div style="height: 36px;"></div>
+    <h2 class="center-text">Common questions</h2>
+    <div class="section-spacer"></div>
     <div class="faq-list">
 
       <div class="faq-item">
-        <button class="faq-question" id="faq-question-1" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-1">
+        <button class="faq-question" id="faq-question-1" aria-expanded="false" aria-controls="faq-answer-1">
           What is a couples check-in?
-          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><use href="#i-chevron"/></svg>
         </button>
         <div class="faq-answer" id="faq-answer-1" role="region" aria-labelledby="faq-question-1"><div class="faq-answer-inner">A couples check-in is a structured conversation where both partners reflect on the same questions — how you're feeling, what's going well, what needs attention — and then decide together what to do about it. Kindred turns this into a weekly ritual: independent answers, a simultaneous reveal, and commitments you both make together. Read more in our <a href="/blog/weekly-couples-check-in/">guide to weekly couples check-ins</a>.</div></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" id="faq-question-2" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-2">
+        <button class="faq-question" id="faq-question-2" aria-expanded="false" aria-controls="faq-answer-2">
           How long does a Kindred check-in take?
-          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><use href="#i-chevron"/></svg>
         </button>
         <div class="faq-answer" id="faq-answer-2" role="region" aria-labelledby="faq-question-2"><div class="faq-answer-inner">About 15–20 minutes. You answer questions on your own screen, go through the reveal together, review your existing commitments, and make new ones.</div></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" id="faq-question-3" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-3">
+        <button class="faq-question" id="faq-question-3" aria-expanded="false" aria-controls="faq-answer-3">
           Do both partners need the app?
-          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><use href="#i-chevron"/></svg>
         </button>
         <div class="faq-answer" id="faq-answer-3" role="region" aria-labelledby="faq-question-3"><div class="faq-answer-inner">Yes. Kindred requires both partners. One person creates the couple and shares an invite code. The other joins with that code. Both need the app installed on an iPhone.</div></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" id="faq-question-4" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-4">
+        <button class="faq-question" id="faq-question-4" aria-expanded="false" aria-controls="faq-answer-4">
           Is Kindred available on Android?
-          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><use href="#i-chevron"/></svg>
         </button>
         <div class="faq-answer" id="faq-answer-4" role="region" aria-labelledby="faq-question-4"><div class="faq-answer-inner">Not yet. Kindred is iOS only right now.</div></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" id="faq-question-5" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-5">
+        <button class="faq-question" id="faq-question-5" aria-expanded="false" aria-controls="faq-answer-5">
           Can we do the check-in remotely?
-          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><use href="#i-chevron"/></svg>
         </button>
         <div class="faq-answer" id="faq-answer-5" role="region" aria-labelledby="faq-question-5"><div class="faq-answer-inner">Kindred is built for couples in the same room. The simultaneous hold-to-start and the real-time reveal are designed for face-to-face conversation.</div></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" id="faq-question-6" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-6">
+        <button class="faq-question" id="faq-question-6" aria-expanded="false" aria-controls="faq-answer-6">
           Is Kindred a therapy app?
-          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><use href="#i-chevron"/></svg>
         </button>
         <div class="faq-answer" id="faq-answer-6" role="region" aria-labelledby="faq-question-6"><div class="faq-answer-inner">No. Kindred doesn't give advice, interpret your answers, or make therapeutic claims. It's a structure tool — it gives you a format for the conversation and helps you follow through on what you decide. If you're looking for guided therapy, Kindred isn't that.</div></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" id="faq-question-7" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-7">
+        <button class="faq-question" id="faq-question-7" aria-expanded="false" aria-controls="faq-answer-7">
           How much does Kindred cost?
-          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><use href="#i-chevron"/></svg>
         </button>
         <div class="faq-answer" id="faq-answer-7" role="region" aria-labelledby="faq-question-7"><div class="faq-answer-inner">$39.99/year or $4.99/month — both plans cover both partners. One subscription, no per-person pricing. Billed through the App Store.</div></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" id="faq-question-8" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-8">
+        <button class="faq-question" id="faq-question-8" aria-expanded="false" aria-controls="faq-answer-8">
           What kinds of questions does Kindred ask?
-          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><use href="#i-chevron"/></svg>
         </button>
         <div class="faq-answer" id="faq-answer-8" role="region" aria-labelledby="faq-question-8"><div class="faq-answer-inner">Questions about personal wellness, your connection as a couple, reflections on the week, and what's ahead. There are 22 questions across four themed batches — a typical check-in covers about 13. Questions rotate each week so it stays fresh. A mix of 1–5 ratings and open-ended text — no quizzes, no right answers. See our full list of <a href="/blog/couples-check-in-questions/">30 check-in questions for couples</a>.</div></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" id="faq-question-9" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-9">
+        <button class="faq-question" id="faq-question-9" aria-expanded="false" aria-controls="faq-answer-9">
           How often can we check in?
-          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><use href="#i-chevron"/></svg>
         </button>
         <div class="faq-answer" id="faq-answer-9" role="region" aria-labelledby="faq-question-9"><div class="faq-answer-inner">Once a week. After you finish a check-in, there's a 5-day cooldown before you can start the next one. This is intentional — the time between check-ins is when you act on your commitments.</div></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" id="faq-question-10" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-10">
+        <button class="faq-question" id="faq-question-10" aria-expanded="false" aria-controls="faq-answer-10">
           Can my partner see my answers before I'm done?
-          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><use href="#i-chevron"/></svg>
         </button>
         <div class="faq-answer" id="faq-answer-10" role="region" aria-labelledby="faq-question-10"><div class="faq-answer-inner">No. You each answer independently. Answers are only revealed when you've both finished, and neither of you can edit them after the reveal.</div></div>
       </div>
@@ -1048,7 +1065,7 @@ img { max-width: 100%; display: block; }
     <h2>Check in with each other</h2>
     <p>A weekly check-in — same questions, honest answers, and commitments you'll actually come back to.</p>
     <a href="#" class="btn-primary">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:18px;height:18px;"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="18" height="18"><use href="#i-app-store"/></svg>
       Download on the App Store
     </a>
     <p class="closing-meta">$39.99/year for both partners. Available on iPhone.</p>
@@ -1070,97 +1087,92 @@ img { max-width: 100%; display: block; }
 </footer>
 
 <script>
-function toggleFaq(btn) {
-  const item = btn.parentElement;
-  const answer = item.querySelector('.faq-answer');
-  const isOpen = item.classList.contains('open');
+// FAQ accordion (event delegation — works for any .faq-question in the list)
+document.querySelector('.faq-list')?.addEventListener('click', (e) => {
+  const btn = e.target.closest('.faq-question');
+  if (!btn) return;
 
-  // close all
-  document.querySelectorAll('.faq-item.open').forEach(el => {
+  const item = btn.parentElement;
+  const wasOpen = item.classList.contains('open');
+
+  document.querySelectorAll('.faq-item.open').forEach((el) => {
     el.classList.remove('open');
     el.querySelector('.faq-answer').style.maxHeight = '0';
     el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
   });
 
-  if (!isOpen) {
+  if (!wasOpen) {
+    const answer = item.querySelector('.faq-answer');
     item.classList.add('open');
     answer.style.maxHeight = answer.scrollHeight + 'px';
     btn.setAttribute('aria-expanded', 'true');
   }
-}
+});
 
-// Intersection Observer for scroll animations
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
-      observer.unobserve(entry.target);
-    }
+// Scroll-reveal animation for step/batch/between cards
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    entry.target.style.opacity = '1';
+    entry.target.style.transform = 'translateY(0)';
+    revealObserver.unobserve(entry.target);
   });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.step, .batch-card, .between-card').forEach(el => {
+document.querySelectorAll('.step, .batch-card, .between-card').forEach((el) => {
   el.style.opacity = '0';
   el.style.transform = 'translateY(24px)';
-  el.style.transition = 'opacity 700ms cubic-bezier(0.22,1,0.36,1), transform 700ms cubic-bezier(0.22,1,0.36,1)';
-  observer.observe(el);
+  el.style.transition = 'opacity 700ms var(--ease-out), transform 700ms var(--ease-out)';
+  revealObserver.observe(el);
 });
 
-// Stagger batch cards
 document.querySelectorAll('.batch-card').forEach((el, i) => {
   el.style.transitionDelay = (i * 80) + 'ms';
 });
 
-// Locale-based pricing: GBP for UK visitors, USD for everyone else
-(function() {
-  var tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  if (tz !== 'Europe/London') return;
+// UK visitors see GBP pricing; everyone else sees the static USD copy.
+(function localizePricing() {
+  if (Intl.DateTimeFormat().resolvedOptions().timeZone !== 'Europe/London') return;
 
-  var yearly = '\u00a334.99';
-  var monthly = '\u00a33.99';
-  var perMonth = '\u00a33';
+  const yearly = '\u00a334.99';
+  const monthly = '\u00a33.99';
+  const perMonth = '\u00a33';
 
-  // Pricing card heading
-  var h3 = document.querySelector('.pricing-card h3');
-  if (h3) {
-    while (h3.firstChild) h3.removeChild(h3.firstChild);
-    h3.appendChild(document.createTextNode(yearly));
-    var span = document.createElement('span');
-    span.style.cssText = 'font-family: var(--font-sans); font-size: 18px; font-weight: 400; color: var(--text-secondary);';
-    span.textContent = '/year';
-    h3.appendChild(span);
-  }
+  const setText = (sel, text) => {
+    const el = document.querySelector(sel);
+    if (el) el.textContent = text;
+  };
+  const replaceChildren = (sel, ...nodes) => {
+    const el = document.querySelector(sel);
+    if (el) el.replaceChildren(...nodes);
+  };
+  const el = (tag, text, className) => {
+    const node = document.createElement(tag);
+    node.textContent = text;
+    if (className) node.className = className;
+    return node;
+  };
 
-  // Pricing detail
-  var detail = document.querySelector('.pricing-detail');
-  if (detail) detail.textContent = "That\u2019s less than " + perMonth + " a month for both partners. One subscription, no per-person pricing. The partner who joins by invite code never sees a paywall.";
+  replaceChildren(
+    '.pricing-card h3',
+    document.createTextNode(yearly),
+    el('span', '/year', 'pricing-period-suffix'),
+  );
+  setText('.pricing-detail', `That\u2019s less than ${perMonth} a month for both partners. One subscription, no per-person pricing. The partner who joins by invite code never sees a paywall.`);
+  replaceChildren(
+    '.pricing-monthly',
+    document.createTextNode('Or '),
+    el('strong', `${monthly}/month`),
+    document.createTextNode(' if you\u2019d rather go month to month.'),
+  );
+  setText('.closing-meta', `${yearly}/year for both partners. Available on iPhone.`);
+  setText('.hero-meta', `Available on iPhone. ${yearly}/year for both partners.`);
 
-  // Monthly option
-  var mo = document.querySelector('.pricing-monthly');
-  if (mo) {
-    while (mo.firstChild) mo.removeChild(mo.firstChild);
-    mo.appendChild(document.createTextNode('Or '));
-    var strong = document.createElement('strong');
-    strong.textContent = monthly + '/month';
-    mo.appendChild(strong);
-    mo.appendChild(document.createTextNode(" if you\u2019d rather go month to month."));
-  }
-
-  // FAQ answer
-  document.querySelectorAll('.faq-answer-inner').forEach(function(el) {
-    if (el.textContent.indexOf('$39.99') !== -1) {
-      el.textContent = yearly + '/year or ' + monthly + '/month \u2014 both plans cover both partners. One subscription, no per-person pricing. Billed through the App Store.';
+  document.querySelectorAll('.faq-answer-inner').forEach((node) => {
+    if (node.textContent.includes('$39.99')) {
+      node.textContent = `${yearly}/year or ${monthly}/month \u2014 both plans cover both partners. One subscription, no per-person pricing. Billed through the App Store.`;
     }
   });
-
-  // Closing CTA
-  var closing = document.querySelector('.closing-meta');
-  if (closing) closing.textContent = yearly + '/year for both partners. Available on iPhone.';
-
-  // Hero meta
-  var heroMeta = document.querySelector('.hero-meta');
-  if (heroMeta) heroMeta.textContent = 'Available on iPhone. ' + yearly + '/year for both partners.';
 })();
 </script>
 

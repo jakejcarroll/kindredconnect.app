@@ -110,6 +110,18 @@ a:hover { color: var(--primary-hover); }
 .footer-links a:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; border-radius: 2px; }
 .footer-copy { font-size: 12px; color: #A69585; }
 
+/* ── GRAIN OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.28;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.24 0 0 0 0 0.18 0 0 0 0 0.14 0 0 0 0.55 0'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>");
+}
+
 /* ── REDUCED MOTION ── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

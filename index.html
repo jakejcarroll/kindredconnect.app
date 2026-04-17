@@ -19,7 +19,7 @@
 <link rel="apple-touch-icon" href="/images/app-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/shared.css">
 <style>
 :root {
@@ -33,19 +33,53 @@ img { max-width: 100%; display: block; }
 
 /* ── HERO ── */
 .hero {
-  padding: 80px 0 64px;
-  background: linear-gradient(180deg, var(--background) 0%, var(--surface-section) 100%);
+  position: relative;
+  isolation: isolate;
+  padding: 96px 0 72px;
+  background: var(--background);
+  overflow: hidden;
+  box-shadow: inset 0 -80px 120px -60px rgba(61,47,37,0.06);
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: -20% -10% 0 -10%;
+  z-index: -1;
+  background:
+    radial-gradient(60% 50% at 18% 28%, rgba(173,96,85,0.22), transparent 70%),
+    radial-gradient(45% 40% at 86% 72%, rgba(201,166,85,0.14), transparent 70%);
+  filter: blur(40px);
 }
 .hero-grid {
   display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
 }
+.hero-kicker {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--primary);
+  margin-bottom: 20px;
+}
 .hero h1 {
-  font-size: 48px; line-height: 1.15; letter-spacing: -0.5px;
-  margin-bottom: 24px;
+  font-size: clamp(44px, 6.4vw, 96px);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  margin-bottom: 28px;
+}
+.hero h1 em {
+  font-family: inherit;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.015em;
 }
 .hero-sub {
-  font-size: 18px; line-height: 1.6; color: var(--text-secondary);
-  max-width: 500px; margin-bottom: 32px;
+  font-size: clamp(15px, 1.35vw, 19px);
+  line-height: 1.55;
+  color: var(--text-secondary);
+  max-width: 520px;
+  margin-bottom: 32px;
 }
 .hero-cta-group { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
 .hero-meta { font-size: 13px; color: var(--text-tertiary); }
@@ -149,7 +183,10 @@ img { max-width: 100%; display: block; }
 .section-alt { background: var(--surface-section); }
 .section-dark { background: var(--footer-bg); color: #F5E0D8; }
 .section h2 {
-  font-size: 32px; line-height: 1.25; margin-bottom: 16px;
+  font-size: clamp(30px, 3.8vw, 54px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
 }
 .section-intro {
   font-size: 16px; color: var(--text-secondary); max-width: 580px;
@@ -338,7 +375,12 @@ img { max-width: 100%; display: block; }
   content: ''; position: absolute; top: 0; left: 0; right: 0;
   height: 4px; background: var(--primary);
 }
-.pricing-card h3 { font-size: 42px; margin-bottom: 4px; }
+.pricing-card h3 {
+  font-size: clamp(38px, 4vw, 56px);
+  letter-spacing: -0.025em;
+  line-height: 1;
+  margin-bottom: 4px;
+}
 .pricing-card .pricing-period { font-size: 16px; color: var(--text-secondary); margin-bottom: 8px; }
 .pricing-card .pricing-detail {
   font-size: 14px; color: var(--text-tertiary); margin-bottom: 32px;
@@ -387,7 +429,12 @@ img { max-width: 100%; display: block; }
 .closing {
   text-align: center; padding: 96px 0 64px;
 }
-.closing h2 { font-size: 32px; margin-bottom: 16px; }
+.closing h2 {
+  font-size: clamp(30px, 3.8vw, 54px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
 .closing p {
   font-size: 17px; color: var(--text-secondary);
   max-width: 480px; margin-inline: auto; margin-bottom: 32px;
@@ -416,7 +463,6 @@ img { max-width: 100%; display: block; }
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   .hero-grid { grid-template-columns: 1fr; gap: 48px; text-align: center; }
-  .hero h1 { font-size: 32px; }
   .hero-sub { margin: 0 auto 28px; }
   .hero-cta-group { align-items: center; }
   .hero-image-area { justify-content: center; }
@@ -430,7 +476,6 @@ img { max-width: 100%; display: block; }
   .batch-grid { grid-template-columns: 1fr 1fr; }
   .between-grid { grid-template-columns: 1fr; }
 
-  .section h2 { font-size: 28px; }
   .nav-link.desktop-only { display: none; }
 }
 
@@ -580,7 +625,8 @@ img { max-width: 100%; display: block; }
   <div class="container">
     <div class="hero-grid">
       <div class="animate-in">
-        <h1>Check in with each other</h1>
+        <p class="hero-kicker">A weekly ritual for couples</p>
+        <h1>Check in with<br><em>each other</em></h1>
         <p class="hero-sub">Kindred is a weekly couples check-in app. Answer the same questions independently, reveal your answers together, and make commitments for the week ahead. Then Kindred brings those commitments back — so the things you mean to do actually happen.</p>
         <div class="hero-cta-group">
           <a href="#" class="btn-primary">
@@ -1111,6 +1157,10 @@ document.querySelectorAll('.batch-card').forEach((el, i) => {
   // Closing CTA
   var closing = document.querySelector('.closing-meta');
   if (closing) closing.textContent = yearly + '/year for both partners. Available on iPhone.';
+
+  // Hero meta
+  var heroMeta = document.querySelector('.hero-meta');
+  if (heroMeta) heroMeta.textContent = 'Available on iPhone. ' + yearly + '/year for both partners.';
 })();
 </script>
 

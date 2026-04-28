@@ -11,8 +11,15 @@
 <link rel="preload" as="font" type="font/woff2" href="/fonts/dm-sans.woff2" crossorigin>
 <link rel="stylesheet" href="/css/shared.css">
 <style>
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 .not-found {
+  flex: 1 0 auto;
   max-width: 560px;
+  width: 100%;
   margin: 0 auto;
   padding: 120px 28px 96px;
   text-align: center;

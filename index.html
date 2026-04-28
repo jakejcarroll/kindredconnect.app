@@ -94,6 +94,9 @@ img { max-width: 100%; display: block; }
   position: relative;
   width: 240px;
   aspect-ratio: 1022 / 2082;
+  /* translateZ(0) promotes to a 3D layer so Safari computes the drop-shadow
+     outset correctly — without it the halo gets clipped on first paint. */
+  transform: translateZ(0);
   filter:
     drop-shadow(0 24px 48px rgba(85, 36, 28, 0.18))
     drop-shadow(0 8px 16px rgba(85, 36, 28, 0.12));
@@ -123,8 +126,8 @@ img { max-width: 100%; display: block; }
   min-height: 540px;
 }
 .hero-phones .phone { position: absolute; }
-.phone--hero-back  { width: 230px; transform: translate(-44px, 12px) rotate(-7deg); opacity: 0.92; z-index: 1; }
-.phone--hero-front { width: 250px; transform: translate(36px, -8px) rotate(4deg); z-index: 2; }
+.phone--hero-back  { width: 230px; transform: translate3d(-44px, 12px, 0) rotate(-7deg); opacity: 0.92; z-index: 1; }
+.phone--hero-front { width: 250px; transform: translate3d(36px, -8px, 0) rotate(4deg); z-index: 2; }
 
 /* ── SECTION UTILITIES ── */
 .section { padding: 80px 0; }
@@ -508,8 +511,8 @@ img { max-width: 100%; display: block; }
   .hero-cta-group { align-items: center; }
   .hero-image-area { justify-content: center; }
   .hero-phones { min-height: 440px; }
-  .phone--hero-back  { width: 190px; transform: translate(-36px, 10px) rotate(-7deg); }
-  .phone--hero-front { width: 210px; transform: translate(28px, -6px) rotate(4deg); }
+  .phone--hero-back  { width: 190px; transform: translate3d(-36px, 10px, 0) rotate(-7deg); }
+  .phone--hero-front { width: 210px; transform: translate3d(28px, -6px, 0) rotate(4deg); }
   .phone--step { width: 200px; }
 
   .step { grid-template-columns: 1fr; gap: 32px; text-align: center; }
@@ -526,8 +529,8 @@ img { max-width: 100%; display: block; }
   .batch-card { padding: 32px 24px 28px; }
   .batch-number { font-size: 72px; right: 12px; }
   .hero-phones { min-height: 360px; }
-  .phone--hero-back  { width: 150px; transform: translate(-28px, 8px) rotate(-7deg); }
-  .phone--hero-front { width: 170px; transform: translate(22px, -4px) rotate(4deg); }
+  .phone--hero-back  { width: 150px; transform: translate3d(-28px, 8px, 0) rotate(-7deg); }
+  .phone--hero-front { width: 170px; transform: translate3d(22px, -4px, 0) rotate(4deg); }
   .phone--step { width: 180px; }
   .pricing-card { padding: 36px 24px; }
 }

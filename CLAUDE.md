@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Marketing website for **Kindred** — a weekly couples check-in iOS app. Hosted on GitHub Pages at `kindredconnect.app`.
+Marketing website for **Kindred** — a weekly couples check-in iOS app. Hosted on Cloudflare Pages at `kindredconnect.app`.
 
 ## Architecture
 
@@ -23,7 +23,7 @@ terms/index.html    — Terms of Service
 images/             — favicon.png (browser tab), app-icon.png (apple-touch-icon), kindred-mark.png, kindred-lockup{,@2x,@3x}.png, og.png (social preview)
 sitemap.xml         — Sitemap for search engines (update when adding pages)
 robots.txt          — Search crawler directives
-CNAME               — GitHub Pages custom domain (kindredconnect.app)
+404.html            — Custom 404 page served by Cloudflare Pages on missing routes
 ```
 
 ### Landing Page Sections (index.html)
@@ -46,7 +46,9 @@ No install, build, lint, or test commands exist.
 
 ## Deployment
 
-Pushes to `main` auto-deploy via GitHub Pages. The `CNAME` file maps to `kindredconnect.app`.
+Pushes to `main` auto-deploy via Cloudflare Pages (project name `kindredconnect-app`, preview URL `kindredconnect-app.pages.dev`). DNS for `kindredconnect.app` is also managed in Cloudflare — the apex CNAME flattens to the Pages project, and `www` is a Proxied CNAME to the apex (Cloudflare auto-redirects www → apex with a single 301).
+
+Cloudflare Pages serves `404.html` with a `404` status for any unknown route. Without it, Pages falls back to `index.html` with `200`, which is bad for SEO.
 
 ## Design System
 
@@ -55,7 +57,7 @@ CSS is split into shared stylesheets and page-specific inline styles:
 - **`css/shared.css`** — loaded by all pages. Contains design tokens (`:root` variables), reset, typography, nav, `.btn-primary`, footer, and `prefers-reduced-motion`. Edit here for site-wide style changes.
 - **`css/blog.css`** — loaded by blog index + blog posts. Contains post content styles, post CTA, "more from blog", blog cards, blog header/featured, and blog responsive rules.
 - **Inline `<style>`** — homepage keeps ~400 lines of unique CSS (hero, phone mocks, sections, pricing, FAQ, animations). Legal pages keep ~50 lines of `.legal` content styles.
-- All `<link>` tags use absolute paths (e.g. `/css/shared.css`) — works at any nesting depth on GitHub Pages but requires a local server for development.
+- All `<link>` tags use absolute paths (e.g. `/css/shared.css`) — works at any nesting depth on Cloudflare Pages but requires a local server for development.
 
 Design tokens in `css/shared.css`:
 - **Fonts:** DM Serif Display (headings) + DM Sans (body) — self-hosted woff2 in `/fonts/`, declared via `@font-face` at the top of `css/shared.css`. `index.html` preloads `dm-sans.woff2`.

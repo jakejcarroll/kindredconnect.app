@@ -321,6 +321,168 @@ img { max-width: 100%; display: block; }
 }
 .closing-meta { font-size: 13px; color: var(--text-tertiary); margin-top: 20px; }
 
+/* ── FROM THE JOURNAL ── */
+.journal {
+  background: var(--surface-section);
+  padding: 96px 0;
+}
+.journal-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 12px; font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: var(--primary);
+  margin-bottom: 14px;
+}
+.journal h2 {
+  font-size: clamp(34px, 4.4vw, 60px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+.journal h2 em {
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.journal-intro {
+  font-size: 16px;
+  color: var(--text-secondary);
+  max-width: 560px;
+  line-height: 1.55;
+  margin-bottom: 56px;
+}
+.journal-grid {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: 56px;
+  align-items: start;
+}
+
+/* Feature card */
+.journal-feature {
+  position: relative;
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 44px 40px 36px;
+  box-shadow: var(--shadow-card);
+  transition: transform 400ms var(--ease-out), box-shadow 400ms var(--ease-out);
+}
+.journal-feature:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-elevated);
+  color: inherit;
+}
+.journal-feature::before {
+  content: '';
+  position: absolute; top: 0; left: 32px; right: 32px;
+  height: 3px; background: var(--primary);
+  border-radius: 0 0 3px 3px;
+}
+.journal-feature-meta {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 24px;
+}
+.journal-feature-meta .dot {
+  width: 4px; height: 4px; border-radius: 50%;
+  background: currentColor; opacity: 0.55;
+}
+.journal-feature h3 {
+  font-family: var(--font-serif); font-weight: 400;
+  font-size: clamp(26px, 2.8vw, 38px);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--foreground);
+  margin-bottom: 18px;
+}
+.journal-feature p {
+  font-size: 16px; line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 28px;
+}
+.journal-feature-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 14px; font-weight: 500; color: var(--primary);
+  letter-spacing: 0.2px;
+}
+.journal-feature-cta::after {
+  content: '\2192';
+  transition: transform 280ms var(--ease-out);
+}
+.journal-feature:hover .journal-feature-cta::after {
+  transform: translateX(5px);
+}
+
+/* Numbered index */
+.journal-list {
+  list-style: none;
+  display: flex; flex-direction: column;
+  border-top: 1px solid var(--border);
+  margin-top: 4px;
+}
+.journal-list-item {
+  border-bottom: 1px solid var(--border);
+}
+.journal-list-link {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 22px;
+  align-items: baseline;
+  padding: 22px 4px;
+  color: var(--foreground);
+  transition: padding 320ms var(--ease-out), color 200ms;
+}
+.journal-list-link:hover { padding-left: 12px; color: var(--foreground); }
+.journal-list-num {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  color: var(--primary);
+  opacity: 0.55;
+  font-feature-settings: 'lnum';
+  min-width: 26px;
+  letter-spacing: 0.02em;
+}
+.journal-list-content h4 {
+  font-family: var(--font-serif); font-weight: 400;
+  font-size: 20px; line-height: 1.25;
+  letter-spacing: -0.005em;
+  color: var(--foreground);
+  margin-bottom: 6px;
+  transition: color 200ms;
+}
+.journal-list-link:hover .journal-list-content h4 { color: var(--primary); }
+.journal-list-content p {
+  font-size: 14px; line-height: 1.5;
+  color: var(--text-secondary);
+}
+.journal-list-arrow {
+  align-self: center;
+  color: var(--primary);
+  font-size: 14px;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 280ms var(--ease-out), transform 280ms var(--ease-out);
+}
+.journal-list-link:hover .journal-list-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (max-width: 900px) {
+  .journal { padding: 72px 0; }
+  .journal-grid { grid-template-columns: 1fr; gap: 40px; }
+  .journal-feature { padding: 36px 28px 28px; }
+}
+@media (max-width: 520px) {
+  .journal-list-link { grid-template-columns: auto 1fr; gap: 16px; }
+  .journal-list-arrow { display: none; }
+}
+
 /* ── ANIMATIONS ── */
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(16px); }
@@ -840,6 +1002,61 @@ img { max-width: 100%; display: block; }
   </div>
 </section>
 
+<!-- FROM THE JOURNAL -->
+<section class="journal">
+  <div class="container">
+    <p class="journal-eyebrow">From the journal</p>
+    <h2>Reading on <em>weekly check-ins</em></h2>
+    <p class="journal-intro">A few practical pieces — on the habit, the questions worth asking, and how Kindred compares to the other couples apps out there.</p>
+
+    <div class="journal-grid">
+      <a href="/blog/weekly-couples-check-in/" class="journal-feature">
+        <div class="journal-feature-meta">
+          <span>Guide</span>
+          <span class="dot" aria-hidden="true"></span>
+          <span>7 min read</span>
+        </div>
+        <h3>How to do a weekly couples check-in</h3>
+        <p>A practical guide to starting a weekly check-in that actually sticks &mdash; what to ask, how long it takes, and how to keep it short enough to survive past week three.</p>
+        <span class="journal-feature-cta">Read the guide</span>
+      </a>
+
+      <ul class="journal-list">
+        <li class="journal-list-item">
+          <a href="/blog/best-couples-apps/" class="journal-list-link">
+            <span class="journal-list-num" aria-hidden="true">01</span>
+            <div class="journal-list-content">
+              <h4>Best couples apps in 2026</h4>
+              <p>An honest comparison &mdash; what each app does well and where it falls short.</p>
+            </div>
+            <span class="journal-list-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
+        <li class="journal-list-item">
+          <a href="/blog/couples-check-in-questions/" class="journal-list-link">
+            <span class="journal-list-num" aria-hidden="true">02</span>
+            <div class="journal-list-content">
+              <h4>30 weekly check-in questions for couples</h4>
+              <p>Honest, themed prompts you can pick from &mdash; connection, friction, intimacy, goals.</p>
+            </div>
+            <span class="journal-list-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
+        <li class="journal-list-item">
+          <a href="/blog/paired-vs-kindred/" class="journal-list-link">
+            <span class="journal-list-num" aria-hidden="true">03</span>
+            <div class="journal-list-content">
+              <h4>Paired vs Kindred: what's actually different</h4>
+              <p>Cadence, pricing, and philosophy &mdash; a head-to-head for couples deciding between them.</p>
+            </div>
+            <span class="journal-list-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <!-- CLOSING CTA -->
 <section class="closing">
   <div class="container">
@@ -900,7 +1117,7 @@ const revealObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.step, .batch-card, .between-card').forEach((el) => {
+document.querySelectorAll('.step, .batch-card, .between-card, .journal-feature, .journal-list-item').forEach((el) => {
   el.style.opacity = '0';
   el.style.transform = 'translateY(24px)';
   el.style.transition = 'opacity 700ms var(--ease-out), transform 700ms var(--ease-out)';
@@ -909,6 +1126,10 @@ document.querySelectorAll('.step, .batch-card, .between-card').forEach((el) => {
 
 document.querySelectorAll('.batch-card').forEach((el, i) => {
   el.style.transitionDelay = (i * 80) + 'ms';
+});
+
+document.querySelectorAll('.journal-list-item').forEach((el, i) => {
+  el.style.transitionDelay = (80 + i * 90) + 'ms';
 });
 
 // UK visitors see GBP pricing; everyone else sees the static USD copy.

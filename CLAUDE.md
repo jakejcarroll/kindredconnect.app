@@ -50,6 +50,8 @@ Pushes to `main` auto-deploy via Cloudflare Pages (project name `kindredconnect-
 
 Cloudflare Pages serves `404.html` with a `404` status for any unknown route. Without it, Pages falls back to `index.html` with `200`, which is bad for SEO.
 
+HSTS is enabled at the Cloudflare edge (`max-age=31536000; includeSubDomains`, preload off). **Any new subdomain on `kindredconnect.app` must serve HTTPS or browsers will refuse to load it** — keep new subdomains Proxied (orange cloud) for automatic SSL via Cloudflare's universal cert, or provision a valid TLS cert at the origin if grey-clouding. To unwind: drop max-age to 0 in Cloudflare and wait the full year for browser caches to expire before HTTPS can safely be removed.
+
 ## Design System
 
 CSS is split into shared stylesheets and page-specific inline styles:

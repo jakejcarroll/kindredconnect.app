@@ -21,7 +21,6 @@
 <link rel="stylesheet" href="/css/shared.css">
 <style>
 :root {
-  --secondary-fill: #F2DFCA;
   --sage: #94A87C;
   --dusty-blue: #8DA0B5;
   --ochre: #C9A655;
@@ -82,99 +81,50 @@ img { max-width: 100%; display: block; }
 .hero-cta-group { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
 .hero-meta { font-size: 13px; color: var(--text-tertiary); }
 
-/* Hero image placeholder */
+/* Hero image area (grid cell) — staging for the phone composite */
 .hero-image-area {
   position: relative;
   display: flex; justify-content: center; align-items: center;
 }
-.phone-mock {
-  width: 240px; height: 480px;
-  background: var(--surface);
-  border-radius: 32px;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-elevated);
-  overflow: hidden;
+
+/* ── PHONE COMPOSITE ──
+   Transparent iPhone bezel PNG layered over a screenshot. Geometry mirrors
+   the screen cutout in /images/screenshots/mockup.webp (1022×2082 source). */
+.phone {
   position: relative;
+  width: 240px;
+  aspect-ratio: 1022 / 2082;
+  filter:
+    drop-shadow(0 24px 48px rgba(85, 36, 28, 0.18))
+    drop-shadow(0 8px 16px rgba(85, 36, 28, 0.12));
 }
-.phone-mock.dark { background: #1E1814; border-color: #3D342E; }
-.phone-mock + .phone-mock { margin-left: -40px; }
+.phone__bezel {
+  width: 100%; height: 100%;
+  display: block; pointer-events: none; user-select: none;
+}
+.phone__screen {
+  position: absolute;
+  left: 5.09%; top: 2.21%;
+  width: 89.82%; height: 95.58%;
+  border-radius: 13.73% / 6.33%;
+  overflow: hidden;
+}
+.phone__screen img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top;
+  display: block;
+}
+.phone--step { width: 220px; }
 
-.phone-screen { padding: 48px 20px 20px; height: 100%; display: flex; flex-direction: column; }
-.phone-notch {
-  position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
-  width: 80px; height: 24px; background: var(--foreground);
-  border-radius: 12px; opacity: 0.08;
+.hero-phones {
+  position: relative;
+  display: grid; place-items: center;
+  width: 100%;
+  min-height: 540px;
 }
-.phone-mock.dark .phone-notch { background: #F5E0D8; opacity: 0.1; }
-
-/* phone content simulations */
-.mock-overline {
-  font-family: var(--font-sans); font-size: 10px; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 1.2px;
-  color: var(--primary); margin-bottom: 12px; opacity: 0.8;
-}
-.mock-question {
-  font-family: var(--font-serif); font-size: 16px; line-height: 1.4;
-  color: var(--foreground); margin-bottom: 24px;
-}
-.phone-mock.dark .mock-question { color: #F5E0D8; }
-.mock-slider {
-  height: 6px; border-radius: 3px; background: var(--secondary-fill);
-  position: relative; margin-bottom: 8px;
-}
-.mock-slider-fill {
-  position: absolute; left: 0; top: 0; height: 100%; border-radius: 3px;
-  background: var(--primary);
-}
-.mock-slider-thumb {
-  position: absolute; top: 50%; transform: translate(-50%, -50%);
-  width: 20px; height: 20px; border-radius: 50%; background: var(--primary);
-  box-shadow: 0 1px 4px rgba(173,96,85,0.3);
-}
-.mock-labels {
-  display: flex; justify-content: space-between;
-  font-size: 9px; color: var(--text-tertiary);
-}
-.phone-mock.dark .mock-labels { color: #7B6C60; }
-.phone-mock.dark .mock-slider { background: #3A302B; }
-.phone-mock.dark .mock-slider-fill { background: #CC8976; }
-.phone-mock.dark .mock-slider-thumb { background: #CC8976; }
-.phone-mock.dark .mock-overline { color: #CC8976; }
-
-/* Reveal mock */
-.mock-reveal-row {
-  display: flex; gap: 10px; margin-bottom: 14px; align-items: center;
-}
-.mock-avatar {
-  width: 26px; height: 26px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-serif); font-size: 12px; font-weight: 500;
-  flex-shrink: 0;
-}
-.mock-avatar.user { background: rgba(173,96,85,0.12); color: var(--primary); }
-.mock-avatar.partner { background: rgba(201,166,85,0.12); color: var(--ochre); }
-.phone-mock.dark .mock-avatar.user { background: rgba(204,137,118,0.15); color: #CC8976; }
-.phone-mock.dark .mock-avatar.partner { background: rgba(201,166,85,0.15); color: var(--ochre); }
-.mock-bar {
-  height: 8px; border-radius: 4px; flex: 1;
-}
-.mock-bar.user { background: var(--primary); }
-.mock-bar.partner { background: var(--ochre); }
-.mock-rating-num {
-  font-family: var(--font-serif); font-size: 14px; width: 18px; text-align: right;
-}
-.phone-mock.dark .mock-rating-num { color: #F5E0D8; }
-.mock-divergence {
-  font-size: 8px; color: var(--primary); font-weight: 600;
-  background: rgba(173,96,85,0.08); border-radius: 4px;
-  padding: 2px 5px; margin-left: 4px; white-space: nowrap;
-}
-.phone-mock.dark .mock-divergence { color: #CC8976; background: rgba(204,137,118,0.1); }
-.mock-q-label {
-  font-size: 11px; color: var(--text-secondary); margin-bottom: 6px;
-  font-weight: 500;
-}
-.phone-mock.dark .mock-q-label { color: #968A7C; }
+.hero-phones .phone { position: absolute; }
+.phone--hero-back  { width: 230px; transform: translate(-44px, 12px) rotate(-7deg); opacity: 0.92; z-index: 1; }
+.phone--hero-front { width: 250px; transform: translate(36px, -8px) rotate(4deg); z-index: 2; }
 
 /* ── SECTION UTILITIES ── */
 .section { padding: 80px 0; }
@@ -207,78 +157,6 @@ img { max-width: 100%; display: block; }
 .step-visual {
   display: flex; justify-content: center;
 }
-.step-phone {
-  width: 200px; height: 400px;
-  background: var(--surface); border-radius: 28px;
-  border: 1px solid var(--border); box-shadow: var(--shadow-card);
-  overflow: hidden; position: relative;
-}
-.step-phone.dark { background: #1E1814; border-color: #3D342E; }
-.step-phone .phone-notch {
-  width: 64px; height: 20px; top: 8px;
-}
-.step-phone .phone-screen { padding: 40px 16px 16px; }
-
-/* ritual mock */
-.ritual-circle-outer {
-  width: 100px; height: 100px; border-radius: 50%;
-  border: 2px solid rgba(173,96,85,0.2);
-  display: flex; align-items: center; justify-content: center;
-  margin: 40px auto 16px;
-  animation: ritual-breathe 3s ease-in-out infinite;
-}
-@keyframes ritual-breathe {
-  0%, 100% { transform: scale(1); border-color: rgba(173,96,85,0.2); }
-  50% { transform: scale(1.06); border-color: rgba(173,96,85,0.35); }
-}
-.ritual-circle-inner {
-  width: 72px; height: 72px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), #CC8976);
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 16px rgba(173,96,85,0.3);
-}
-.ritual-label {
-  font-family: var(--font-serif); font-size: 13px; color: #fff;
-  font-style: italic;
-}
-.ritual-avatars {
-  display: flex; justify-content: center; gap: 8px; margin-top: 12px;
-}
-.ritual-avatars .mock-avatar { width: 28px; height: 28px; font-size: 13px; }
-.ritual-text {
-  text-align: center; font-size: 11px; color: var(--text-tertiary);
-  margin-top: 10px;
-}
-.step-phone.dark .ritual-text { color: #7B6C60; }
-.step-phone.dark .ritual-circle-outer { border-color: rgba(204,137,118,0.2); }
-
-/* commitments mock */
-.mock-commitment {
-  display: flex; align-items: center; gap: 10px;
-  padding: 10px 0; border-bottom: 1px solid var(--border);
-}
-.mock-commitment:last-child { border: none; }
-.mock-check {
-  width: 20px; height: 20px; border-radius: 50%;
-  border: 1.5px solid var(--border); flex-shrink: 0;
-}
-.mock-check.done {
-  background: var(--primary); border-color: var(--primary);
-  position: relative;
-}
-.mock-check.done::after {
-  content: '✓'; color: #fff; font-size: 11px;
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-}
-.mock-commit-text { font-size: 11px; color: var(--foreground); line-height: 1.3; }
-.mock-commit-text.struck { text-decoration: line-through; color: var(--text-tertiary); }
-.mock-commit-badge {
-  font-size: 8px; font-weight: 600; text-transform: uppercase;
-  padding: 2px 6px; border-radius: 4px; letter-spacing: 0.5px;
-  margin-left: auto; white-space: nowrap;
-}
-.mock-commit-badge.task { background: rgba(173,96,85,0.08); color: var(--primary); }
-.mock-commit-badge.habit { background: rgba(148,168,124,0.12); color: var(--sage); }
 
 /* ── BATCHES ── */
 .batch-grid {
@@ -461,16 +339,16 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-sans); font-size: 18px; font-weight: 400;
   color: var(--text-secondary);
 }
-.mock-avatar--sm { width: 22px; height: 22px; font-size: 10px; }
-.mock-rating-num--sm { font-size: 12px; }
-
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   .hero-grid { grid-template-columns: 1fr; gap: 48px; text-align: center; }
   .hero-sub { margin: 0 auto 28px; }
   .hero-cta-group { align-items: center; }
   .hero-image-area { justify-content: center; }
-  .phone-mock { width: 180px; height: 360px; }
+  .hero-phones { min-height: 440px; }
+  .phone--hero-back  { width: 190px; transform: translate(-36px, 10px) rotate(-7deg); }
+  .phone--hero-front { width: 210px; transform: translate(28px, -6px) rotate(4deg); }
+  .phone--step { width: 200px; }
 
   .step { grid-template-columns: 1fr; gap: 32px; text-align: center; }
   .step:nth-child(even) .step-content { order: 1; }
@@ -485,7 +363,10 @@ img { max-width: 100%; display: block; }
   .batch-grid { grid-template-columns: 1fr; }
   .batch-card { padding: 32px 24px 28px; }
   .batch-number { font-size: 72px; right: 12px; }
-  .phone-mock { width: 160px; height: 320px; }
+  .hero-phones { min-height: 360px; }
+  .phone--hero-back  { width: 150px; transform: translate(-28px, 8px) rotate(-7deg); }
+  .phone--hero-front { width: 170px; transform: translate(22px, -4px) rotate(4deg); }
+  .phone--step { width: 180px; }
   .pricing-card { padding: 36px 24px; }
 }
 
@@ -655,53 +536,17 @@ img { max-width: 100%; display: block; }
         </div>
       </div>
       <div class="hero-image-area animate-in delay-2" aria-hidden="true">
-        <!-- Question phone -->
-        <div class="phone-mock">
-          <div class="phone-notch"></div>
-          <div class="phone-screen">
-            <div class="mock-overline">Connection</div>
-            <div class="mock-question">How emotionally connected did you feel to your partner this week?</div>
-            <div class="mock-slider">
-              <div class="mock-slider-fill" style="width: 68%"></div>
-              <div class="mock-slider-thumb" style="left: 68%"></div>
-            </div>
-            <div class="mock-labels">
-              <span>Very disconnected</span>
-              <span>Deeply connected</span>
+        <div class="hero-phones">
+          <div class="phone phone--hero-back">
+            <img class="phone__bezel" src="/images/screenshots/mockup.webp" alt="" decoding="async">
+            <div class="phone__screen">
+              <img src="/images/screenshots/04-reveal-back.webp" alt="" decoding="async">
             </div>
           </div>
-        </div>
-        <!-- Reveal phone -->
-        <div class="phone-mock dark">
-          <div class="phone-notch"></div>
-          <div class="phone-screen">
-            <div class="mock-overline">Reveal</div>
-            <div style="margin-bottom: 18px;">
-              <div class="mock-q-label">How connected you felt</div>
-              <div class="mock-reveal-row">
-                <div class="mock-avatar user">J</div>
-                <div class="mock-bar user" style="width: 68%"></div>
-                <span class="mock-rating-num">4</span>
-              </div>
-              <div class="mock-reveal-row">
-                <div class="mock-avatar partner">S</div>
-                <div class="mock-bar partner" style="width: 40%"></div>
-                <span class="mock-rating-num">2</span>
-                <span class="mock-divergence">Saw it differently</span>
-              </div>
-            </div>
-            <div>
-              <div class="mock-q-label">How you're feeling overall</div>
-              <div class="mock-reveal-row">
-                <div class="mock-avatar user">J</div>
-                <div class="mock-bar user" style="width: 80%"></div>
-                <span class="mock-rating-num">4</span>
-              </div>
-              <div class="mock-reveal-row">
-                <div class="mock-avatar partner">S</div>
-                <div class="mock-bar partner" style="width: 72%"></div>
-                <span class="mock-rating-num">4</span>
-              </div>
+          <div class="phone phone--hero-front">
+            <img class="phone__bezel" src="/images/screenshots/mockup.webp" alt="" decoding="async">
+            <div class="phone__screen">
+              <img src="/images/screenshots/04-reveal-front.webp" alt="" decoding="async" fetchpriority="high">
             </div>
           </div>
         </div>
@@ -724,19 +569,10 @@ img { max-width: 100%; display: block; }
           <p>One of you opens Kindred and the other gets a notification. You both hold a button at the same time — same room, same moment. The whole check-in takes about 15–20 minutes.</p>
         </div>
         <div class="step-visual" aria-hidden="true">
-          <div class="step-phone dark">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <div class="ritual-circle-outer">
-                <div class="ritual-circle-inner">
-                  <span class="ritual-label">Hold</span>
-                </div>
-              </div>
-              <div class="ritual-avatars">
-                <div class="mock-avatar user">J</div>
-                <div class="mock-avatar partner">S</div>
-              </div>
-              <div class="ritual-text">Hold together to begin</div>
+          <div class="phone phone--step">
+            <img class="phone__bezel" src="/images/screenshots/mockup.webp" alt="" decoding="async" loading="lazy">
+            <div class="phone__screen">
+              <img src="/images/screenshots/02-ritual.webp" alt="" decoding="async" loading="lazy">
             </div>
           </div>
         </div>
@@ -750,19 +586,10 @@ img { max-width: 100%; display: block; }
           <p>You each answer the same questions on your own screen — a mix of ratings and open-ended reflections about your week, your connection, and what's ahead. Your partner can't see your answers until you're both done.</p>
         </div>
         <div class="step-visual" aria-hidden="true">
-          <div class="step-phone">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <div class="mock-overline" style="color: var(--sage);">Wellness</div>
-              <div class="mock-question" style="font-size: 14px;">How are you feeling overall this week?</div>
-              <div class="mock-slider">
-                <div class="mock-slider-fill" style="width: 55%; background: var(--sage);"></div>
-                <div class="mock-slider-thumb" style="left: 55%; background: var(--sage); box-shadow: 0 1px 4px rgba(148,168,124,0.3);"></div>
-              </div>
-              <div class="mock-labels">
-                <span>Really struggling</span>
-                <span>Thriving</span>
-              </div>
+          <div class="phone phone--step">
+            <img class="phone__bezel" src="/images/screenshots/mockup.webp" alt="" decoding="async" loading="lazy">
+            <div class="phone__screen">
+              <img src="/images/screenshots/02b-answer.webp" alt="" decoding="async" loading="lazy">
             </div>
           </div>
         </div>
@@ -776,37 +603,10 @@ img { max-width: 100%; display: block; }
           <p>Answers appear side by side, simultaneously. No editing after the fact. Where your ratings differ by a lot, the app highlights it.</p>
         </div>
         <div class="step-visual" aria-hidden="true">
-          <div class="step-phone dark">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <div class="mock-overline">Reveal</div>
-              <div style="margin-bottom: 14px;">
-                <div class="mock-q-label">Overall feeling</div>
-                <div class="mock-reveal-row">
-                  <div class="mock-avatar mock-avatar--sm user">J</div>
-                  <div class="mock-bar user" style="width:75%"></div>
-                  <span class="mock-rating-num mock-rating-num--sm">4</span>
-                </div>
-                <div class="mock-reveal-row">
-                  <div class="mock-avatar mock-avatar--sm partner">S</div>
-                  <div class="mock-bar partner" style="width:80%"></div>
-                  <span class="mock-rating-num mock-rating-num--sm">4</span>
-                </div>
-              </div>
-              <div>
-                <div class="mock-q-label">How responsive your partner felt</div>
-                <div class="mock-reveal-row">
-                  <div class="mock-avatar mock-avatar--sm user">J</div>
-                  <div class="mock-bar user" style="width:40%"></div>
-                  <span class="mock-rating-num mock-rating-num--sm">2</span>
-                </div>
-                <div class="mock-reveal-row">
-                  <div class="mock-avatar mock-avatar--sm partner">S</div>
-                  <div class="mock-bar partner" style="width:90%"></div>
-                  <span class="mock-rating-num mock-rating-num--sm">5</span>
-                  <span class="mock-divergence">Saw it differently</span>
-                </div>
-              </div>
+          <div class="phone phone--step">
+            <img class="phone__bezel" src="/images/screenshots/mockup.webp" alt="" decoding="async" loading="lazy">
+            <div class="phone__screen">
+              <img src="/images/screenshots/04-reveal-back.webp" alt="" decoding="async" loading="lazy">
             </div>
           </div>
         </div>
@@ -820,30 +620,10 @@ img { max-width: 100%; display: block; }
           <p>After the reveal, you decide together: what to do this week, what to keep doing, and what to let go of. You can create tasks (one-off things to do) and habits (ongoing things to keep up). Kindred brings them all back next week for review.</p>
         </div>
         <div class="step-visual" aria-hidden="true">
-          <div class="step-phone">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <div class="mock-overline">Commitments</div>
-              <div class="mock-commitment">
-                <div class="mock-check done"></div>
-                <span class="mock-commit-text struck">Book the therapist appointment</span>
-                <span class="mock-commit-badge task">Task</span>
-              </div>
-              <div class="mock-commitment">
-                <div class="mock-check"></div>
-                <span class="mock-commit-text">Plan a date night this week</span>
-                <span class="mock-commit-badge task">Task</span>
-              </div>
-              <div class="mock-commitment">
-                <div class="mock-check" style="border-color: var(--sage); background: rgba(148,168,124,0.1);"></div>
-                <span class="mock-commit-text">Phones away during dinner</span>
-                <span class="mock-commit-badge habit">Habit</span>
-              </div>
-              <div class="mock-commitment">
-                <div class="mock-check" style="border-color: var(--sage); background: rgba(148,168,124,0.1);"></div>
-                <span class="mock-commit-text">10 min check-in before bed</span>
-                <span class="mock-commit-badge habit">Habit</span>
-              </div>
+          <div class="phone phone--step">
+            <img class="phone__bezel" src="/images/screenshots/mockup.webp" alt="" decoding="async" loading="lazy">
+            <div class="phone__screen">
+              <img src="/images/screenshots/03-commitments.webp" alt="" decoding="async" loading="lazy">
             </div>
           </div>
         </div>

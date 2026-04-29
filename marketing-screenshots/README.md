@@ -1,42 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# marketing-screenshots
 
-## Getting Started
+Build pipeline for the iPhone phone composites embedded on the marketing
+homepage. Reads the source PNGs in `public/` and writes one composited WebP
+per phone to `../images/screenshots/`.
 
-First, run the development server:
+The marketing site embeds these as plain `<img>` tags — bezel and screenshot
+are pre-merged here so there's no runtime layering, no pixel-percentage CSS,
+and no decode race between two layers.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Layout
+
+```
+public/
+  mockup.png        — transparent iPhone bezel (1022×2082)
+  slides/*.png      — in-app screenshots (1320×2868), one per phone
+scripts/
+  sync-web-assets.mjs — composite builder
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Regenerate
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Run after replacing or adding a source PNG in `public/slides/` (or after
+swapping `public/mockup.png`):
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+pnpm install   # one time, or after sharp updates
+pnpm sync-web-assets
+```
 
-## Learn More
+The script resizes the bezel to 750 px wide, places each screenshot inside
+the screen rectangle with rounded corners, and writes
+`../images/screenshots/<slide-name>.webp`. Idempotent; safe to re-run.
 
-To learn more about Next.js, take a look at the following resources:
+## Source-of-truth note
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This folder is the regeneration tool, not the source of truth for what the
+marketing site serves. The committed WebPs in `images/screenshots/` are what
+the deployed site uses. Re-run the sync any time the source PNGs change, then
+commit both the source PNG and the regenerated WebP together.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Adding a new phone
 
-## Deploy on Vercel
+1. Drop the new screenshot PNG into `public/slides/`.
+2. `pnpm sync-web-assets`.
+3. Reference the resulting `/images/screenshots/<name>.webp` from
+   `index.html`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Bezel highlight flattening
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-## Sync to web
-
-`pnpm sync-web-assets` reads `public/slides/*.png` and `public/mockup.png`, resizes them with `sharp`, and writes WebP copies to `../images/screenshots/` for use by the homepage phone composites in the parent marketing site. Screenshots come out 750 px wide at quality 85; the bezel comes out 580 px wide with alpha preserved. The script is in `scripts/sync-web-assets.mjs` and is idempotent — re-run any time you add a new slide or replace an existing one.
-
-> **Note on bezel processing:** the bezel pass intentionally flattens near-cream "highlight" pixels in the gold frame to a uniform gold. The source `mockup.png` includes a metallic camera-bump shimmer and a bottom reflection band that read fine against the App Store slides' dark backgrounds but as visible light bleed against the marketing site's cream page background. If you ever update `mockup.png` to add intentionally bright design elements, expect this step to mute them — adjust the threshold in `convertBezel()` or skip the flattening for that asset.
+The source `mockup.png` carries a metallic camera-bump shimmer at the top and
+a matching reflection band at the bottom. They read fine on dark App Store
+backgrounds (the original use case) but as light bleed against the marketing
+site's cream page background. The script flattens those near-cream pixels in
+the gold frame to a uniform gold. If you ever update `mockup.png` to add
+intentionally bright design elements, expect this step to mute them — adjust
+the threshold in `flattenBezelHighlights()` or skip the flattening for that
+asset.

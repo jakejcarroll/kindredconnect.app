@@ -87,35 +87,22 @@ img { max-width: 100%; display: block; }
   display: flex; justify-content: center; align-items: center;
 }
 
-/* ── PHONE COMPOSITE ──
-   Transparent iPhone bezel PNG layered over a screenshot. Geometry mirrors
-   the screen cutout in /images/screenshots/mockup.webp (1022×2082 source). */
+/* ── PHONE ──
+   Single pre-composited image (bezel + screenshot) from
+   marketing-screenshots/. width attr drives display width; intrinsic
+   aspect-ratio (750×1528) prevents layout shift before load. */
 .phone {
-  position: relative;
   width: 240px;
-  aspect-ratio: 1022 / 2082;
+  height: auto;
+  display: block;
+  pointer-events: none;
+  user-select: none;
   /* translateZ(0) promotes to a 3D layer so Safari computes the drop-shadow
      outset correctly — without it the halo gets clipped on first paint. */
   transform: translateZ(0);
   filter:
     drop-shadow(0 24px 48px rgba(85, 36, 28, 0.18))
     drop-shadow(0 8px 16px rgba(85, 36, 28, 0.12));
-}
-.phone__bezel {
-  width: 100%; height: 100%;
-  display: block; pointer-events: none; user-select: none;
-}
-.phone__screen {
-  position: absolute;
-  left: 5.09%; top: 2.21%;
-  width: 89.82%; height: 95.58%;
-  border-radius: 13.73% / 6.33%;
-  overflow: hidden;
-}
-.phone__screen img {
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: top;
-  display: block;
 }
 
 .hero-phones {
@@ -814,18 +801,8 @@ img { max-width: 100%; display: block; }
       </div>
       <div class="hero-image-area animate-in delay-2" aria-hidden="true">
         <div class="hero-phones">
-          <div class="phone phone--hero-back">
-            <img class="phone__bezel" src="/images/screenshots/mockup.webp" alt="" decoding="async">
-            <div class="phone__screen">
-              <img src="/images/screenshots/04-reveal-back.webp" alt="" decoding="async">
-            </div>
-          </div>
-          <div class="phone phone--hero-front">
-            <img class="phone__bezel" src="/images/screenshots/mockup.webp" alt="" decoding="async">
-            <div class="phone__screen">
-              <img src="/images/screenshots/04-reveal-front.webp" alt="" decoding="async" fetchpriority="high">
-            </div>
-          </div>
+          <img class="phone phone--hero-back" src="/images/screenshots/04-reveal-back.webp?v=1" width="750" height="1528" alt="" decoding="async">
+          <img class="phone phone--hero-front" src="/images/screenshots/04-reveal-front.webp?v=1" width="750" height="1528" alt="" decoding="async" fetchpriority="high">
         </div>
       </div>
     </div>
@@ -847,12 +824,7 @@ img { max-width: 100%; display: block; }
           <p>One of you opens Kindred. The other gets a notification. You both hold a button at the same time — same room, same moment. The whole thing takes about fifteen to twenty minutes.</p>
         </div>
         <div class="step-visual" aria-hidden="true">
-          <div class="phone phone--step">
-            <img class="phone__bezel" src="/images/screenshots/mockup.webp" alt="" decoding="async" loading="lazy">
-            <div class="phone__screen">
-              <img src="/images/screenshots/02-ritual.webp" alt="" decoding="async" loading="lazy">
-            </div>
-          </div>
+          <img class="phone phone--step" src="/images/screenshots/02-ritual.webp?v=1" width="750" height="1528" alt="" decoding="async" loading="lazy">
         </div>
       </div>
 
@@ -864,12 +836,7 @@ img { max-width: 100%; display: block; }
           <p>You each answer the same questions on your own screen — ratings and short reflections about your week, your connection, and what's ahead. Neither of you sees the other's answers until you've both finished.</p>
         </div>
         <div class="step-visual" aria-hidden="true">
-          <div class="phone phone--step">
-            <img class="phone__bezel" src="/images/screenshots/mockup.webp" alt="" decoding="async" loading="lazy">
-            <div class="phone__screen">
-              <img src="/images/screenshots/02b-answer.webp" alt="" decoding="async" loading="lazy">
-            </div>
-          </div>
+          <img class="phone phone--step" src="/images/screenshots/02b-answer.webp?v=1" width="750" height="1528" alt="" decoding="async" loading="lazy">
         </div>
       </div>
 
@@ -881,12 +848,7 @@ img { max-width: 100%; display: block; }
           <p>Answers appear side by side, at the same moment. No editing after the fact. Where your ratings differ by a lot, the app shows it.</p>
         </div>
         <div class="step-visual" aria-hidden="true">
-          <div class="phone phone--step">
-            <img class="phone__bezel" src="/images/screenshots/mockup.webp" alt="" decoding="async" loading="lazy">
-            <div class="phone__screen">
-              <img src="/images/screenshots/04-reveal-back.webp" alt="" decoding="async" loading="lazy">
-            </div>
-          </div>
+          <img class="phone phone--step" src="/images/screenshots/04-reveal-back.webp?v=1" width="750" height="1528" alt="" decoding="async" loading="lazy">
         </div>
       </div>
 
@@ -898,12 +860,7 @@ img { max-width: 100%; display: block; }
           <p>After the reveal, you decide together — what to do this week, what to keep doing, what to let go of. Tasks for one-off things. Habits for what you want to keep up. The conversation has somewhere to go, and Kindred brings it back next week.</p>
         </div>
         <div class="step-visual" aria-hidden="true">
-          <div class="phone phone--step">
-            <img class="phone__bezel" src="/images/screenshots/mockup.webp" alt="" decoding="async" loading="lazy">
-            <div class="phone__screen">
-              <img src="/images/screenshots/05-decide.webp" alt="" decoding="async" loading="lazy">
-            </div>
-          </div>
+          <img class="phone phone--step" src="/images/screenshots/05-decide.webp?v=1" width="750" height="1528" alt="" decoding="async" loading="lazy">
         </div>
       </div>
 
@@ -915,12 +872,7 @@ img { max-width: 100%; display: block; }
           <p>A check-in is twenty minutes. The week is the rest. That's where Kindred actually lives — the commitments you've made, the things that come up, the record of how it's been going.</p>
         </div>
         <div class="step-visual" aria-hidden="true">
-          <div class="phone phone--step">
-            <img class="phone__bezel" src="/images/screenshots/mockup.webp" alt="" decoding="async" loading="lazy">
-            <div class="phone__screen">
-              <img src="/images/screenshots/01-hero.webp" alt="" decoding="async" loading="lazy">
-            </div>
-          </div>
+          <img class="phone phone--step" src="/images/screenshots/01-hero.webp?v=1" width="750" height="1528" alt="" decoding="async" loading="lazy">
         </div>
         <div class="step-features-row">
           <div class="feature-card">

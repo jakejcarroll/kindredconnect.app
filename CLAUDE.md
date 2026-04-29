@@ -97,13 +97,13 @@ Source masters live in `docs/Brand Assets/` (gitignored). Update masters there f
 
 ## Homepage Screenshots
 
-The phone mockups on `index.html` (hero composite + 5 rhythm steps) are real iPhone screenshots composited at runtime: `/images/screenshots/mockup.webp` (transparent bezel) layered with one of the slide screenshots. The composite is just two `<img>` tags inside a `.phone` wrapper — no JS, no canvas.
+The phone mockups on `index.html` (hero composite + 5 rhythm steps) are pre-composited static WebPs — bezel and screenshot are merged at build time, not at runtime. Each phone is a single `<img class="phone">` tag with explicit `width="750" height="1528"`. No two-layer overlay, no pixel-percentage CSS, no decode race between bezel and screen.
 
 The phone's drop-shadow halo (`filter: drop-shadow(0 24px 48px ...)`) extends roughly 72px below the visual phone bounds. Any layout that places content directly below a phone needs to leave at least that much clearance, or the halo bleeds into the next element. Step 5's row gap uses a `--week-row-gap` custom property (currently 112px) so the divider line can self-centre without re-tuning a magic number.
 
-Source-of-truth PNGs live in `marketing-screenshots/public/slides/` (eight numbered slides plus `02b-answer.png`) and `marketing-screenshots/public/mockup.png`. The marketing-screenshots Next.js project is also where App Store screenshots are generated; the same raw assets feed both.
+Source PNGs live in `marketing-screenshots/public/slides/` (one per phone, the raw in-app screenshot at 1320×2868) plus `marketing-screenshots/public/mockup.png` (the transparent iPhone bezel at 1022×2082). The `marketing-screenshots/` folder is a build-only tool — not deployed, not Next.js. It's a small Node + sharp project whose only job is to produce the composited WebPs in `images/screenshots/`.
 
-To refresh `images/screenshots/` after adding or replacing a source PNG:
+To refresh `images/screenshots/` after replacing or adding a source PNG:
 
 ```
 cd marketing-screenshots
@@ -111,9 +111,9 @@ pnpm install   # only needed once, or after sharp updates
 pnpm sync-web-assets
 ```
 
-The script (`marketing-screenshots/scripts/sync-web-assets.mjs`) resizes every `public/slides/*.png` to 750 px wide WebP and `public/mockup.png` to 580 px wide WebP, writing into `../images/screenshots/`. Idempotent; safe to re-run.
+The script (`marketing-screenshots/scripts/sync-web-assets.mjs`) reads each `public/slides/*.png`, resizes the bezel to 750 px wide, places the screenshot inside the screen rectangle with rounded corners, and writes one composited WebP per slide to `../images/screenshots/<slide>.webp`. Idempotent; safe to re-run. Commit both the source PNG and the regenerated WebP together.
 
-To swap which screenshot appears in a slot, edit the `<img src>` inside the corresponding `.phone__screen` div in `index.html` — no CSS changes needed.
+To swap which screenshot appears in a slot on the marketing site, edit the `<img src>` on the corresponding `.phone` element in `index.html` — no CSS changes needed. To change the screenshot itself, replace the source PNG in `public/slides/` and re-run sync.
 
 **Cache busting:** browsers cache favicons very aggressively, often surviving hard-refresh. The favicon `<link>` includes a `?v=N` query string. When swapping `favicon.png`, bump the version on every page (currently `?v=2`):
 

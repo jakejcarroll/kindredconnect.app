@@ -30,9 +30,11 @@ robots.txt          — Search crawler directives
 
 Major sections in DOM order:
 
-`nav` → `hero` → `how-it-works (#how)` → `batches (#batches)` → `between check-ins (#between)` → `anti-positioning (#anti)` → `who it's for (#who)` → `pricing (#pricing)` → `FAQ (#faq)` → `closing CTA` → `footer`
+`nav` → `hero` → `weekly rhythm (#rhythm)` → `batches (#batches)` → `skeptical-partner (#involves)` → `pricing (#pricing)` → `FAQ (#faq)` → `journal (.journal)` → `closing CTA (.closing)` → `footer`
 
-Nav links use fragment IDs (e.g. `#how`, `#pricing`) for smooth-scroll navigation.
+The rhythm section is the structural centre — five sub-sections (4 alternating step rows + a "week between" break-out with three feature cards). The skeptical-partner beat sits in a constrained 640px column and runs in a quieter visual register than the rest of the page.
+
+Nav has no fragment links — only `Blog` and `Download` (the latter is a placeholder `href="#"` until the App Store URL is wired). Section IDs exist for direct linking but aren't used in the current nav.
 
 ## Development
 
@@ -58,7 +60,7 @@ CSS is split into shared stylesheets and page-specific inline styles:
 
 - **`css/shared.css`** — loaded by all pages. Contains design tokens (`:root` variables), reset, typography, nav, `.btn-primary`, footer, and `prefers-reduced-motion`. Edit here for site-wide style changes.
 - **`css/blog.css`** — loaded by blog index + blog posts. Contains post content styles, post CTA, "more from blog", blog cards, blog header/featured, and blog responsive rules.
-- **Inline `<style>`** — homepage keeps ~400 lines of unique CSS (hero, phone mocks, sections, pricing, FAQ, animations). Legal pages keep ~50 lines of `.legal` content styles.
+- **Inline `<style>`** — homepage keeps ~600 lines of unique CSS (hero, phone composites, rhythm steps + week-between break-out, batches, skeptical-partner, pricing, FAQ, journal, closing CTA, animations). Legal pages keep ~50 lines of `.legal` content styles.
 - All `<link>` tags use absolute paths (e.g. `/css/shared.css`) — works at any nesting depth on Cloudflare Pages but requires a local server for development.
 
 Design tokens in `css/shared.css`:
@@ -73,9 +75,9 @@ Design tokens in `css/shared.css`:
 
 At the bottom of the landing page:
 - **FAQ accordion** — event delegation on `.faq-list` handles clicks on any `.faq-question` child. Adding a new `.faq-item` works automatically; no `onclick` attribute needed.
-- **Scroll animations** — IntersectionObserver fades in `.step`, `.batch-card`, and `.between-card` elements. New elements with these classes auto-animate; removing the class opts out.
-- **Stagger delay** — `.batch-card` elements get sequential `transitionDelay` based on DOM order.
-- **UK pricing** — if timezone is `Europe/London`, the script swaps visible USD copy to GBP. Update this block whenever USD pricing strings change.
+- **Scroll animations** — IntersectionObserver fades in `.step`, `.batch-card`, `.feature-card`, `.skeptical-row`, `.journal-feature`, and `.journal-list-item` elements. New elements with these classes auto-animate; removing the class opts out.
+- **Stagger delay** — `.batch-card`, `.feature-card`, `.skeptical-row`, and `.journal-list-item` get sequential `transitionDelay` based on DOM order.
+- **UK pricing** — if timezone is `Europe/London`, the script swaps visible USD copy to GBP. Update this block whenever USD pricing strings change. Note: `.pricing-detail` is currency-agnostic by design (no per-month math), so the localiser deliberately skips it.
 
 ## Icon sprite (index.html)
 
@@ -95,7 +97,9 @@ Source masters live in `docs/Brand Assets/` (gitignored). Update masters there f
 
 ## Homepage Screenshots
 
-The 5 phone mockups on `index.html` (hero + 4 steps) are real iPhone screenshots composited at runtime: `/images/screenshots/mockup.webp` (transparent bezel) layered with one of the slide screenshots. The composite is just two `<img>` tags inside a `.phone` wrapper — no JS, no canvas.
+The phone mockups on `index.html` (hero composite + 5 rhythm steps) are real iPhone screenshots composited at runtime: `/images/screenshots/mockup.webp` (transparent bezel) layered with one of the slide screenshots. The composite is just two `<img>` tags inside a `.phone` wrapper — no JS, no canvas.
+
+The phone's drop-shadow halo (`filter: drop-shadow(0 24px 48px ...)`) extends roughly 72px below the visual phone bounds. Any layout that places content directly below a phone needs to leave at least that much clearance, or the halo bleeds into the next element. Step 5's row gap uses a `--week-row-gap` custom property (currently 112px) so the divider line can self-centre without re-tuning a magic number.
 
 Source-of-truth PNGs live in `marketing-screenshots/public/slides/` (eight numbered slides plus `02b-answer.png`) and `marketing-screenshots/public/mockup.png`. The marketing-screenshots Next.js project is also where App Store screenshots are generated; the same raw assets feed both.
 

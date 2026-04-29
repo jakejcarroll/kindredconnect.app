@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kindred — Weekly Couples Check-In App for iPhone</title>
-<meta name="description" content="A weekly couples check-in app. Answer the same questions independently, reveal answers together, and make commitments you'll actually follow through on. iOS." />
+<meta name="description" content="A weekly couples check-in app for iPhone. Answer independently, reveal together, and turn what you talk about into commitments that come back next week." />
 <link rel="canonical" href="https://kindredconnect.app/" />
 <meta property="og:title" content="Kindred — Weekly Couples Check-In App" />
-<meta property="og:description" content="Answer the same questions independently. Reveal answers together. Make real commitments. A couples app with weekly check-ins and real follow-through." />
+<meta property="og:description" content="Answer the same questions independently, reveal together, and turn what you talk about into commitments that come back next week. The weekly couples check-in for iPhone." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://kindredconnect.app/" />
 <meta property="og:image" content="https://kindredconnect.app/images/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Kindred — Weekly Couples Check-In App for iPhone" />
 <meta name="twitter:image" content="https://kindredconnect.app/images/og.png" />
-<meta name="twitter:description" content="Answer the same questions independently. Reveal answers together. Make real commitments. A couples app with weekly check-ins and real follow-through." />
+<meta name="twitter:description" content="Answer the same questions independently, reveal together, and turn what you talk about into commitments that come back next week. The weekly couples check-in for iPhone." />
 <link rel="icon" type="image/png" href="/images/favicon.png?v=2">
 <link rel="apple-touch-icon" href="/images/app-icon.png">
 <link rel="preload" as="font" type="font/woff2" href="/fonts/dm-sans.woff2" crossorigin>
@@ -117,7 +117,6 @@ img { max-width: 100%; display: block; }
   object-fit: cover; object-position: top;
   display: block;
 }
-.phone--step { width: 220px; }
 
 .hero-phones {
   position: relative;
@@ -128,6 +127,8 @@ img { max-width: 100%; display: block; }
 .hero-phones .phone { position: absolute; }
 .phone--hero-back  { width: 230px; transform: translate3d(-44px, 12px, 0) rotate(-7deg); opacity: 0.92; z-index: 1; }
 .phone--hero-front { width: 250px; transform: translate3d(36px, -8px, 0) rotate(4deg); z-index: 2; }
+
+.phone--step { width: 175px; }
 
 /* ── SECTION UTILITIES ── */
 .section { padding: 80px 0; }
@@ -145,7 +146,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* ── HOW IT WORKS ── */
-.steps { display: flex; flex-direction: column; gap: 72px; }
+.steps { display: flex; flex-direction: column; gap: 32px; }
 .step {
   display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;
 }
@@ -155,7 +156,11 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-serif); font-size: 48px; color: var(--primary);
   opacity: 0.18; line-height: 1; margin-bottom: 8px;
 }
-.step h3 { font-size: 24px; margin-bottom: 12px; }
+.step h3 { font-size: 24px; margin-bottom: 12px; letter-spacing: -0.005em; }
+.step h3 em {
+  font-family: inherit; font-style: italic; font-weight: 400;
+  letter-spacing: -0.005em;
+}
 .step p { font-size: 16px; line-height: 1.5; color: var(--text-secondary); max-width: 440px; }
 .step-visual {
   display: flex; justify-content: center;
@@ -214,37 +219,120 @@ img { max-width: 100%; display: block; }
   margin-top: 40px;
 }
 
-/* ── BETWEEN CHECK-INS ── */
-.between-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-  margin-top: 64px;
+/* ── RHYTHM: WEEK BETWEEN (step 5 break-out) ──
+   Row gap must clear the phone's drop-shadow halo (~72px below visual bounds);
+   the divider line below derives its position from this same gap variable. */
+.step--week {
+  --week-row-gap: 112px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  row-gap: var(--week-row-gap);
 }
-.between-card {
-  padding: 28px 28px;
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 16px;
+/* anchor heading to top of row 1 with breathing room from the section intro */
+.step--week .step-content { grid-column: 1; grid-row: 1; align-self: start; padding-top: 24px; }
+.step--week .step-visual { grid-column: 2; grid-row: 1; }
+.step--week .step-features-row {
+  grid-column: 1 / -1; grid-row: 2;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  position: relative;
+}
+/* hairline divider self-centres in the row gap — stays in sync with --week-row-gap */
+.step--week .step-features-row::before {
+  content: '';
+  position: absolute;
+  top: calc(var(--week-row-gap) / -2);
+  left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border) 18%, var(--border) 82%, transparent);
+}
+.feature-card {
+  padding: 28px 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
   box-shadow: var(--shadow-card);
   transition: transform 400ms var(--ease-out), box-shadow 400ms var(--ease-out);
 }
-.between-card:hover {
+.feature-card:hover {
   transform: translateY(-3px);
   box-shadow: var(--shadow-elevated);
 }
-.between-icon {
-  width: 40px; height: 40px; border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 12px; font-size: 20px;
+.feature-card-name {
+  font-family: var(--font-serif); font-weight: 400;
+  font-size: 22px; letter-spacing: -0.3px;
+  line-height: 1.15;
+  margin-bottom: 12px;
+  color: var(--foreground);
+  display: flex; align-items: center; gap: 10px;
 }
-.between-card h3 { font-size: 20px; margin-bottom: 10px; }
-.between-card p { font-size: 15px; line-height: 1.5; color: var(--text-secondary); }
+.feature-card-name::before {
+  content: '';
+  width: 7px; height: 7px;
+  background: var(--primary);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.feature-card p { font-size: 15px; line-height: 1.55; color: var(--text-secondary); }
 
-/* ── WHO ── */
-.who-content { max-width: 640px; margin-top: 64px; }
-.who-content p {
-  font-size: 16px; line-height: 1.5; color: var(--text-secondary);
-  margin-bottom: 16px;
+/* ── SKEPTICAL-PARTNER BEAT ── */
+.skeptical {
+  max-width: 640px; margin: 0 auto;
 }
-.who-content p:first-of-type { color: var(--foreground); }
+.skeptical h2 {
+  text-align: center;
+  font-size: clamp(28px, 3.4vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 48px;
+}
+.skeptical h2 em {
+  font-family: inherit; font-style: italic; font-weight: 400; letter-spacing: -0.005em;
+}
+.skeptical-rows {
+  border-top: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+.skeptical-row {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 36px;
+  align-items: baseline;
+}
+.skeptical-label {
+  font-family: var(--font-sans);
+  font-size: 11px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.22em;
+  color: var(--text-tertiary);
+  padding-top: 4px;
+}
+.skeptical-row p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--foreground);
+}
+.skeptical-cta { text-align: center; }
+
+/* ── SECONDARY CTA BUTTON ── */
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: var(--primary);
+  font-family: var(--font-sans); font-size: 15px; font-weight: 500;
+  padding: 13px 28px; border-radius: 16px;
+  border: 1px solid var(--primary);
+  cursor: pointer;
+  transition: background 200ms var(--ease-out), color 200ms var(--ease-out), transform 150ms;
+  letter-spacing: 0.3px;
+}
+.btn-secondary:hover { background: var(--primary); color: #fff; }
+.btn-secondary:focus-visible { outline: 2px solid var(--foreground); outline-offset: 3px; }
+.btn-secondary:active { transform: scale(0.98); }
+
+/* ── CLOSING CTA BUTTON GROUP ── */
+.closing-cta-group {
+  display: inline-flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+}
 
 /* ── PRICING ── */
 .pricing-card {
@@ -317,6 +405,10 @@ img { max-width: 100%; display: block; }
   line-height: 1.1;
   letter-spacing: -0.02em;
   margin-bottom: 16px;
+}
+.closing h2 em {
+  font-family: inherit; font-style: italic; font-weight: 400;
+  letter-spacing: -0.015em;
 }
 .closing p {
   font-size: 17px; color: var(--text-secondary);
@@ -521,7 +613,25 @@ img { max-width: 100%; display: block; }
   .step p { margin: 0 auto; }
 
   .batch-grid { grid-template-columns: 1fr 1fr; }
-  .between-grid { grid-template-columns: 1fr; }
+
+  .step--week { grid-template-columns: 1fr; }
+  .step--week .step-content,
+  .step--week .step-visual { grid-column: 1; }
+  .step--week .step-content { grid-row: auto; }
+  .step--week .step-visual { grid-row: auto; }
+  .step--week .step-features-row {
+    grid-template-columns: 1fr; gap: 16px;
+  }
+
+  .skeptical-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .skeptical-label { padding-top: 0; }
+
+  .closing-cta-group { flex-direction: column; align-items: stretch; width: 100%; max-width: 320px; }
+  .closing-cta-group .btn-primary,
+  .closing-cta-group .btn-secondary { justify-content: center; }
 }
 
 @media (max-width: 520px) {
@@ -560,7 +670,7 @@ img { max-width: 100%; display: block; }
       "description": "Annual subscription — covers both partners"
     }
   ],
-  "description": "A weekly couples check-in app with independent answers, simultaneous reveal, and commitment follow-through."
+  "description": "A weekly couples check-in app. Answer the same questions independently, reveal answers together, and turn what you talk about into commitments that come back next week."
 }
 </script>
 
@@ -660,7 +770,7 @@ img { max-width: 100%; display: block; }
   "name": "Kindred",
   "url": "https://kindredconnect.app",
   "logo": "https://kindredconnect.app/images/kindred-lockup.png",
-  "description": "A weekly couples check-in app. Answer the same questions independently, reveal answers together, and make commitments you'll actually follow through on.",
+  "description": "A weekly couples check-in app. Answer the same questions independently, reveal answers together, and turn what you talk about into commitments that come back next week.",
   "email": "support@kindredconnect.app"
 }
 </script>
@@ -691,9 +801,9 @@ img { max-width: 100%; display: block; }
   <div class="container">
     <div class="hero-grid">
       <div class="animate-in">
-        <p class="hero-kicker">A weekly ritual for couples</p>
+        <p class="hero-kicker">A weekly check-in for honest conversation</p>
         <h1>Check in with<br><em>each other</em></h1>
-        <p class="hero-sub">Kindred is a weekly couples check-in app. Answer the same questions independently, reveal your answers together, and make commitments for the week ahead. Then Kindred brings those commitments back — so the things you mean to do actually happen.</p>
+        <p class="hero-sub">Most couples know what they mean to do. Life happens. Kindred is a weekly check-in that turns those conversations into commitments you actually come back to.</p>
         <div class="hero-cta-group">
           <a href="#" class="btn-primary">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#i-app-store"/></svg>
@@ -722,18 +832,19 @@ img { max-width: 100%; display: block; }
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section class="section" id="how">
+<!-- THE WEEKLY RHYTHM -->
+<section class="section" id="rhythm">
   <div class="container">
-    <h2>How the weekly check-in works</h2>
+    <h2>The weekly rhythm</h2>
+    <p class="section-intro">Four steps you do together. Then the week between.</p>
     <div class="steps">
 
       <!-- Step 1 -->
       <div class="step">
         <div class="step-content">
           <div class="step-num">01</div>
-          <h3>Start together</h3>
-          <p>One of you opens Kindred and the other gets a notification. You both hold a button at the same time — same room, same moment. The whole check-in takes about 15–20 minutes.</p>
+          <h3>Start <em>together</em></h3>
+          <p>One of you opens Kindred. The other gets a notification. You both hold a button at the same time — same room, same moment. The whole thing takes about fifteen to twenty minutes.</p>
         </div>
         <div class="step-visual" aria-hidden="true">
           <div class="phone phone--step">
@@ -749,8 +860,8 @@ img { max-width: 100%; display: block; }
       <div class="step">
         <div class="step-content">
           <div class="step-num">02</div>
-          <h3>Answer on your own</h3>
-          <p>You each answer the same questions on your own screen — a mix of ratings and open-ended reflections about your week, your connection, and what's ahead. Your partner can't see your answers until you're both done.</p>
+          <h3>Answer on your <em>own</em></h3>
+          <p>You each answer the same questions on your own screen — ratings and short reflections about your week, your connection, and what's ahead. Neither of you sees the other's answers until you've both finished.</p>
         </div>
         <div class="step-visual" aria-hidden="true">
           <div class="phone phone--step">
@@ -766,8 +877,8 @@ img { max-width: 100%; display: block; }
       <div class="step">
         <div class="step-content">
           <div class="step-num">03</div>
-          <h3>Reveal at the same time</h3>
-          <p>Answers appear side by side, simultaneously. No editing after the fact. Where your ratings differ by a lot, the app highlights it.</p>
+          <h3>Reveal at the <em>same time</em></h3>
+          <p>Answers appear side by side, at the same moment. No editing after the fact. Where your ratings differ by a lot, the app shows it.</p>
         </div>
         <div class="step-visual" aria-hidden="true">
           <div class="phone phone--step">
@@ -783,15 +894,46 @@ img { max-width: 100%; display: block; }
       <div class="step">
         <div class="step-content">
           <div class="step-num">04</div>
-          <h3>Make commitments</h3>
-          <p>After the reveal, you decide together: what to do this week, what to keep doing, and what to let go of. You can create tasks (one-off things to do) and habits (ongoing things to keep up). Kindred brings them all back next week for review.</p>
+          <h3>Decide <em>together</em></h3>
+          <p>After the reveal, you decide together — what to do this week, what to keep doing, what to let go of. Tasks for one-off things. Habits for what you want to keep up. The conversation has somewhere to go, and Kindred brings it back next week.</p>
         </div>
         <div class="step-visual" aria-hidden="true">
           <div class="phone phone--step">
             <img class="phone__bezel" src="/images/screenshots/mockup.webp" alt="" decoding="async" loading="lazy">
             <div class="phone__screen">
-              <img src="/images/screenshots/03-commitments.webp" alt="" decoding="async" loading="lazy">
+              <img src="/images/screenshots/05-decide.webp" alt="" decoding="async" loading="lazy">
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 5: The week between -->
+      <div class="step step--week">
+        <div class="step-content">
+          <div class="step-num">05</div>
+          <h3>The week <em>between</em></h3>
+          <p>A check-in is twenty minutes. The week is the rest. That's where Kindred actually lives — the commitments you've made, the things that come up, the record of how it's been going.</p>
+        </div>
+        <div class="step-visual" aria-hidden="true">
+          <div class="phone phone--step">
+            <img class="phone__bezel" src="/images/screenshots/mockup.webp" alt="" decoding="async" loading="lazy">
+            <div class="phone__screen">
+              <img src="/images/screenshots/01-hero.webp" alt="" decoding="async" loading="lazy">
+            </div>
+          </div>
+        </div>
+        <div class="step-features-row">
+          <div class="feature-card">
+            <h4 class="feature-card-name">Commitments</h4>
+            <p>Tasks and habits live on your home screen all week. Next check-in, Kindred asks: done, keep going, or let go?</p>
+          </div>
+          <div class="feature-card">
+            <h4 class="feature-card-name">Notepad</h4>
+            <p>Something worth bringing to the next check-in? Write it down. It'll be there when you sit down together.</p>
+          </div>
+          <div class="feature-card">
+            <h4 class="feature-card-name">History</h4>
+            <p>Every past check-in saved — your answers and your partner's, side by side. Nothing edited after the fact.</p>
           </div>
         </div>
       </div>
@@ -804,7 +946,7 @@ img { max-width: 100%; display: block; }
 <section class="section section-alt" id="batches">
   <div class="container">
     <h2>What you'll talk about</h2>
-    <p class="section-intro">Each check-in moves through four themes. Some questions return every week so you can see how things shift. Others rotate in over time, so each check-in feels a bit different.</p>
+    <p class="section-intro">Every check-in moves through four themes. Some questions come back every week so you can see how things shift. Others rotate in over time, so it never feels like the same conversation twice.</p>
     <div class="batch-grid">
       <div class="batch-card" data-batch="wellness">
         <span class="batch-number" aria-hidden="true">01</span>
@@ -843,55 +985,28 @@ img { max-width: 100%; display: block; }
   </div>
 </section>
 
-<!-- BETWEEN CHECK-INS -->
-<section class="section" id="between">
+<!-- SKEPTICAL-PARTNER BEAT -->
+<section class="section" id="involves">
   <div class="container">
-    <h2>What happens between check-ins</h2>
-    <div class="between-grid">
-      <div class="between-card">
-        <div class="between-icon" style="background: rgba(173,96,85,0.08);">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+    <div class="skeptical">
+      <h2>Wondering what it <em>actually</em> involves?</h2>
+      <div class="skeptical-rows">
+        <div class="skeptical-row">
+          <div class="skeptical-label">The time</div>
+          <p>Fifteen to twenty minutes, once a week, in the same room. There's a five-day cooldown after each check-in, so it never asks for more than that.</p>
         </div>
-        <h3>Commitments</h3>
-        <p>Tasks you said you'd do. Habits you're working on. They live on your home screen all week. When the next check-in starts, Kindred asks: done, keep going, or let go?</p>
-      </div>
-      <div class="between-card">
-        <div class="between-icon" style="background: rgba(141,160,181,0.1);">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--dusty-blue)" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        <div class="skeptical-row">
+          <div class="skeptical-label">The shape of it</div>
+          <p>You answer on your own screen. Your answers are saved as you go, and only revealed once you've both finished. After that, neither of you can edit them.</p>
         </div>
-        <h3>Notepad</h3>
-        <p>Something comes up mid-week that you want to bring to the check-in? Write it down. General notes are there when you sit down together and cleared after each check-in.</p>
-      </div>
-      <div class="between-card">
-        <div class="between-icon" style="background: rgba(201,166,85,0.1);">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ochre)" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <div class="skeptical-row">
+          <div class="skeptical-label">What's not in it</div>
+          <p>No scoring. No advice. No notifications pestering you to come back. Kindred shows you what each of you said and lets you take it from there.</p>
         </div>
-        <h3>History</h3>
-        <p>Every past check-in is saved — your answers and your partner's, side by side. Nothing gets edited after the fact. It's an honest record of how things have been, week to week.</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ANTI-POSITIONING -->
-<section class="section section-alt" id="anti">
-  <div class="container">
-    <h2>It gets out of the way</h2>
-    <div class="who-content who-content--offset">
-      <p>Your answers, side by side, unedited. No relationship health scores. No advice or interpretation. No streaks or badges. Kindred shows you what each of you actually said — what you do with it is yours.</p>
-      <p>You'll get a notification when your partner starts a check-in, and an optional mid-week reminder about your commitments. Both can be turned off. One subscription covers both of you.</p>
-    </div>
-  </div>
-</section>
-
-<!-- WHO IT'S FOR -->
-<section class="section" id="who">
-  <div class="container">
-    <h2>Built for couples who are already trying</h2>
-    <div class="who-content who-content--offset">
-      <p>You care about your relationship. You talk about what needs to change. But life happens, and the things you mean to do slip through the cracks — not from lack of effort, but from lack of structure.</p>
-      <p>Kindred is that structure. A 15–20 minute weekly relationship check-in that gives those conversations somewhere to go.</p>
-      <p>Kindred is designed for couples who can sit down together. You do it at the same time, side by side. Both partners need the app installed on their iPhone.</p>
+      <div class="skeptical-cta">
+        <a href="#" class="btn-secondary">Try the demo</a>
+      </div>
     </div>
   </div>
 </section>
@@ -903,7 +1018,7 @@ img { max-width: 100%; display: block; }
     <div class="section-spacer"></div>
     <div class="pricing-card">
       <h3>$39.99<span class="pricing-period-suffix">/year</span></h3>
-      <div class="pricing-detail">That's less than $3.50 a month for both partners. One subscription, no per-person pricing. The partner who joins by invite code never sees a paywall.</div>
+      <div class="pricing-detail">One subscription. Both partners. No per-person pricing. The partner who joins by invite code never sees a paywall.</div>
       <div class="pricing-divider"></div>
       <div class="pricing-monthly">Or <strong>$4.99/month</strong> if you'd rather go month to month.</div>
       <a href="#" class="btn-primary btn-primary--full">
@@ -911,7 +1026,7 @@ img { max-width: 100%; display: block; }
         Download on the App Store
       </a>
       <p class="pricing-note">Both plans are billed through the App Store. You can cancel any time in your iPhone settings.</p>
-      <p class="pricing-note" style="margin-top: 8px;">No free trial — but the app has an interactive demo you can try before signing up.</p>
+      <p class="pricing-note" style="margin-top: 8px;">No free trial — but there's an interactive demo you can try before signing up.</p>
     </div>
   </div>
 </section>
@@ -1065,12 +1180,15 @@ img { max-width: 100%; display: block; }
 <!-- CLOSING CTA -->
 <section class="closing">
   <div class="container">
-    <h2>Check in with each other</h2>
-    <p>A weekly check-in — same questions, honest answers, and commitments you'll actually come back to.</p>
-    <a href="#" class="btn-primary">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="18" height="18"><use href="#i-app-store"/></svg>
-      Download on the App Store
-    </a>
+    <h2>Check in with <em>each other</em></h2>
+    <p>A weekly rhythm for the conversations you keep meaning to have — with commitments that come back next week.</p>
+    <div class="closing-cta-group">
+      <a href="#" class="btn-primary">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="18" height="18"><use href="#i-app-store"/></svg>
+        Download on the App Store
+      </a>
+      <a href="#" class="btn-secondary">Try the demo</a>
+    </div>
     <p class="closing-meta">$39.99/year for both partners. Available on iPhone.</p>
   </div>
 </section>
@@ -1122,7 +1240,7 @@ const revealObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.step, .batch-card, .between-card, .journal-feature, .journal-list-item').forEach((el) => {
+document.querySelectorAll('.step, .batch-card, .feature-card, .skeptical-row, .journal-feature, .journal-list-item').forEach((el) => {
   el.style.opacity = '0';
   el.style.transform = 'translateY(24px)';
   el.style.transition = 'opacity 700ms var(--ease-out), transform 700ms var(--ease-out)';
@@ -1131,6 +1249,14 @@ document.querySelectorAll('.step, .batch-card, .between-card, .journal-feature, 
 
 document.querySelectorAll('.batch-card').forEach((el, i) => {
   el.style.transitionDelay = (i * 80) + 'ms';
+});
+
+document.querySelectorAll('.feature-card').forEach((el, i) => {
+  el.style.transitionDelay = (i * 90) + 'ms';
+});
+
+document.querySelectorAll('.skeptical-row').forEach((el, i) => {
+  el.style.transitionDelay = (i * 100) + 'ms';
 });
 
 document.querySelectorAll('.journal-list-item').forEach((el, i) => {
@@ -1143,7 +1269,6 @@ document.querySelectorAll('.journal-list-item').forEach((el, i) => {
 
   const yearly = '\u00a334.99';
   const monthly = '\u00a33.99';
-  const perMonth = '\u00a33';
 
   const setText = (sel, text) => {
     const el = document.querySelector(sel);
@@ -1165,7 +1290,7 @@ document.querySelectorAll('.journal-list-item').forEach((el, i) => {
     document.createTextNode(yearly),
     el('span', '/year', 'pricing-period-suffix'),
   );
-  setText('.pricing-detail', `That\u2019s less than ${perMonth} a month for both partners. One subscription, no per-person pricing. The partner who joins by invite code never sees a paywall.`);
+  // .pricing-detail copy is currency-agnostic (no per-month math), so no swap needed.
   replaceChildren(
     '.pricing-monthly',
     document.createTextNode('Or '),
